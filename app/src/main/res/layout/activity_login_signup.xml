@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginSignupActivity">
+
+    <ImageView
+        android:id="@+id/imageViewSmallBanner"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:scaleType="centerCrop"
+        android:largeHeap="true"
+        android:src="@drawable/login_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/textViewHighlightTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="480dp"
+        android:padding="20dp"
+        android:background="@drawable/layout_login"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageViewSmallBanner"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Booking with us and enjoy your journey"
+            android:textAlignment="center"
+            android:fontFamily="@font/nexa_bold"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discover amazing places at exclusive deals"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/nexa_light"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            />
+
+        <LinearLayout
+            android:id="@+id/linear_button_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/outlined_button"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:paddingVertical="15dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_google"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login or Signup with google"
+                android:fontFamily="@font/nexa_regular"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
