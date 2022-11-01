@@ -43,8 +43,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful())
-                        {
+                        if(task.isSuccessful()) {
                             auth.signOut();
 
                             Toast.makeText(getApplicationContext(), "Logout successful", Toast.LENGTH_SHORT).show();

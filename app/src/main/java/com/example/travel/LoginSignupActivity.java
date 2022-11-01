@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -29,6 +30,14 @@ public class LoginSignupActivity extends AppCompatActivity implements View.OnCli
     LinearLayout linearButton;
     GoogleSignInClient googleSignInClient;
     FirebaseAuth auth;
+    ProgressBar loading;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        createRequest();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +46,13 @@ public class LoginSignupActivity extends AppCompatActivity implements View.OnCli
         auth = FirebaseAuth.getInstance();
         linearButton = (LinearLayout) findViewById(R.id.linear_button_login);
         linearButton.setOnClickListener(this);
+        loading = (ProgressBar) findViewById(R.id.loadingLogin);
 
-        createRequest();
     }
 
     @Override
     public void onClick(View view) {
+        loading.setVisibility(View.VISIBLE);
         signin();
     }
 
@@ -61,10 +71,12 @@ public class LoginSignupActivity extends AppCompatActivity implements View.OnCli
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if(task.isSuccessful()) {
+                                            loading.setVisibility(View.GONE);
                                             startActivity(new Intent(LoginSignupActivity.this ,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                             finish();
                                         }
                                         else {
+                                            loading.setVisibility(View.GONE);
                                             Toast.makeText(LoginSignupActivity.this, "Authentication Failed : "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     }
