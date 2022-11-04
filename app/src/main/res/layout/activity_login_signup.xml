@@ -82,7 +82,10 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginLeft="5dp"
-                android:visibility="gone"/>
+                android:visibility="gone"
+
+                android:indeterminate="true"
+                android:indeterminateTint="@android:color/white"/>
         </LinearLayout>
 
     </LinearLayout>
