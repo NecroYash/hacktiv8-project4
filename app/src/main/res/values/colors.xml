@@ -12,4 +12,6 @@
     <color name="gold">#FFD03D</color>
     <color name="text_color">#BCBCBC</color>
     <color name="sub_text_color">#7B7B7B</color>
+    <color name="confirm_color">#00FF0D</color>
+
 </resources>

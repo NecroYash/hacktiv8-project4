@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_detail_booking"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id="@+id/capCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nexa_regular"
+        android:text="Jakarta"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/comBus"
+        app:layout_constraintTop_toBottomOf="@+id/comBus" />
+
+    <TextView
+        android:id="@+id/comBus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nexa_bold"
+        android:text="SINAR ALAM MENTARI"
+        android:textColor="@color/main_color"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/depCity"
+        android:layout_marginStart="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nexa_regular"
+        android:text="Cengkarang"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/capCity"
+        app:layout_constraintTop_toTopOf="@+id/capCity" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintEnd_toStartOf="@id/arrCity"
+        app:layout_constraintTop_toTopOf="@id/arrCity"
+        app:layout_constraintStart_toEndOf="@id/depCity"
+        android:src="@drawable/ic_sharp"/>
+
+    <TextView
+        android:id="@+id/arrCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:fontFamily="@font/nexa_regular"
+        android:text="Singapore"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/depCity"
+        app:layout_constraintTop_toTopOf="@+id/depCity" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nexa_regular"
+        android:layout_marginTop="5dp"
+        android:text="Sen 02 Des 2019, "
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/capCity"
+        app:layout_constraintTop_toBottomOf="@+id/capCity" />
+
+    <TextView
+        android:id="@+id/txtTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nexa_regular"
+        android:text="20:20"
+        android:textSize="18sp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@+id/txtDate"
+        app:layout_constraintTop_toTopOf="@+id/txtDate" />
+
+    <TextView
+        android:id="@+id/txtTerminal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nexa_regular"
+        android:layout_marginTop="5dp"
+        android:text="Soekarno Hatta"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/txtDate"
+        app:layout_constraintTop_toBottomOf="@+id/txtDate" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txtTerminal"
+        app:layout_constraintTop_toBottomOf="@+id/txtTerminal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_detail_booking_confirm"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/confirmTicket"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/nexa_bold"
+                android:text="E-VOUCHER TELAH TERBIT"
+                android:textColor="@color/confirm_color"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
