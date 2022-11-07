@@ -1,14 +1,16 @@
 package com.example.travel;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -54,45 +56,49 @@ public class LoginSignupActivity extends AppCompatActivity implements View.OnCli
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==100) {
-            Task<GoogleSignInAccount> signInAccountTask= GoogleSignIn.getSignedInAccountFromIntent(data);
-            if(signInAccountTask.isSuccessful()) {
+        if (requestCode == 100) {
+            Task<GoogleSignInAccount> signInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
+//            Toast.makeText(this, "MASUK DI BAGIAN IF", Toast.LENGTH_SHORT).show();
+            // masuk sini toast tidak muncul
+            if (signInAccountTask.isSuccessful()) {
+                Toast.makeText(this, "MASUK BAGIAN TRY", Toast.LENGTH_SHORT).show();
                 try {
                     GoogleSignInAccount googleSignInAccount = signInAccountTask.getResult(ApiException.class);
-                    AuthCredential authCredential= GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(),null);
+                    AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(), null);
                     auth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if(task.isSuccessful()) {
-                                        loading.setVisibility(View.GONE);
-                                        startActivity(new Intent(LoginSignupActivity.this ,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                                        finish();
-                                    }
-                                    else {
-                                        loading.setVisibility(View.GONE);
-                                        Toast.makeText(LoginSignupActivity.this, "Authentication Failed : "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                }
-                catch (ApiException e) {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                loading.setVisibility(View.GONE);
+                                startActivity(new Intent(LoginSignupActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                finish();
+                            } else {
+                                loading.setVisibility(View.GONE);
+                                Toast.makeText(LoginSignupActivity.this, "Authentication Failed : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } catch (ApiException e) {
+                    Toast.makeText(this, "MASUK BAGIAN CATCH", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
+            }else{
+                Toast.makeText(this, "MASUK DI ELSE TOAST", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    private void createRequest(){
+    private void createRequest() {
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(
                 GoogleSignInOptions.DEFAULT_SIGN_IN
         ).requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
-        googleSignInClient= GoogleSignIn.getClient(this ,googleSignInOptions);
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
     }
 
-    private void signin(){
+    private void signin() {
         Intent intent = googleSignInClient.getSignInIntent();
         startActivityForResult(intent, 100);
     }
