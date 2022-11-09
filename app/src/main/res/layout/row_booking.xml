@@ -1,130 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_detail_booking"
-    android:padding="20dp">
+    android:padding="15dp"
+    android:layout_marginBottom="15dp"
+    android:background="@drawable/white_bg_rounded">
 
-
-    <TextView
-        android:id="@+id/capCity"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearBusName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/nexa_regular"
-        android:text="Jakarta"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/comBus"
-        app:layout_constraintTop_toBottomOf="@+id/comBus" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_bus"/>
 
-    <TextView
-        android:id="@+id/comBus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nexa_bold"
-        android:text="SINAR ALAM MENTARI"
-        android:textColor="@color/main_color"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:fontFamily="@font/nexa_regular"
+            android:textColor="@color/black"
+            android:text="Name bus"/>
 
-    <TextView
-        android:id="@+id/depCity"
-        android:layout_marginStart="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nexa_regular"
-        android:text="Cengkarang"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/capCity"
-        app:layout_constraintTop_toTopOf="@+id/capCity" />
+    </LinearLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        app:layout_constraintEnd_toStartOf="@id/arrCity"
-        app:layout_constraintTop_toTopOf="@id/arrCity"
-        app:layout_constraintStart_toEndOf="@id/depCity"
-        android:src="@drawable/ic_sharp"/>
-
-    <TextView
-        android:id="@+id/arrCity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:fontFamily="@font/nexa_regular"
-        android:text="Singapore"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/depCity"
-        app:layout_constraintTop_toTopOf="@+id/depCity" />
-
-    <TextView
-        android:id="@+id/txtDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nexa_regular"
-        android:layout_marginTop="5dp"
-        android:text="Sen 02 Des 2019, "
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/capCity"
-        app:layout_constraintTop_toBottomOf="@+id/capCity" />
-
-    <TextView
-        android:id="@+id/txtTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nexa_regular"
-        android:text="20:20"
-        android:textSize="18sp"
-        android:layout_marginStart="5dp"
-        app:layout_constraintStart_toEndOf="@+id/txtDate"
-        app:layout_constraintTop_toTopOf="@+id/txtDate" />
-
-    <TextView
-        android:id="@+id/txtTerminal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nexa_regular"
-        android:layout_marginTop="5dp"
-        android:text="Soekarno Hatta"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/txtDate"
-        app:layout_constraintTop_toBottomOf="@+id/txtDate" />
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearDetail"
         android:layout_marginTop="10dp"
-        app:cardElevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/txtTerminal"
-        app:layout_constraintTop_toBottomOf="@+id/txtTerminal">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearBusName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_detail_booking_confirm"
-            android:padding="5dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/confirmTicket"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/timeBookingList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nexa_regular"
+                    android:textColor="@color/black"
+                    android:text="06:50 AM"/>
+
+                <TextView
+                    android:id="@+id/dateBookingList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nexa_regular"
+                    android:textColor="@color/black"
+                    android:text="Nov 2, 2022" />
+
+            </LinearLayout>
+
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/nexa_bold"
-                android:text="E-VOUCHER TELAH TERBIT"
-                android:textColor="@color/confirm_color"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_weight="1"
+                android:layout_height=".6dp"
+                android:layout_marginLeft="5dp"
+                android:background="#D3D3D3" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:src="@drawable/bus"/>
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/longTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#D3D3D3"
+                    android:fontFamily="@font/nexa_regular"
+                    android:textStyle="bold"
+                    android:text="Total"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height=".6dp"
+                android:layout_marginRight="5dp"
+                android:background="#D3D3D3" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/totalTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nexa_regular"
+                    android:textColor="@color/black"
+                    android:text="06:50 AM"/>
+
+                <TextView
+                    android:id="@+id/totalDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nexa_regular"
+                    android:textColor="@color/black"
+                    android:text="Nov 2, 2022"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height=".55dp"
+            android:layout_marginVertical="15dp"
+            android:background="#D3D3D3"
+
+             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearDetail">
+
+        <TextView
+            android:id="@+id/seatBookingList"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nexa_regular"
+            android:textColor="@color/black"
+            android:text="Seat"/>
+
+        <TextView
+            android:id="@+id/priceBookingList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nexa_regular"
+            android:textColor="@color/black"
+            android:text="Total"/>
+    </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

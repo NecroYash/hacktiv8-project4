@@ -1,11 +1,3 @@
 <resources>
-    <string name="app_name">Travel</string>
-
-    <string-array name="feelings">
-        <item>Sad</item>
-        <item>Dissatisfied</item>
-        <item>Satisfied</item>
-        <item>Happy</item>
-        <item>Excited</item>
-    </string-array>
+    <string name="app_name">Tripy</string>
 </resources>

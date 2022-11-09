@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -77,13 +78,16 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 onBackPressed();
                 break;
             case (R.id.buttonBooking) :
-                Toast.makeText(this, "Booking button", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(UserProfileActivity.this, BookingActivity.class);
+                startActivity(intent);
                 break;
             case (R.id.buttonSpending) :
-                Toast.makeText(this, "Total Spending button", Toast.LENGTH_SHORT).show();
+                Intent intentSpending = new Intent(UserProfileActivity.this, TotalSpendingActivity.class);
+                startActivity(intentSpending);
                 break;
             case (R.id.buttonInformation) :
-                Toast.makeText(this, "Information button", Toast.LENGTH_SHORT).show();
+                Intent intentInformation = new Intent(UserProfileActivity.this, InformationActivity.class);
+                startActivity(intentInformation);
                 break;
             case (R.id.buttonLogout) :
                 dialog();

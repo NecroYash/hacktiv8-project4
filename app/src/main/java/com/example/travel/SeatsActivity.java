@@ -28,8 +28,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class SeatsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -38,10 +43,11 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     FirebaseAuth auth;
     RecyclerView recyclerView;
     ProgressBar seatsLoading;
-    TextView getSeat;
+    TextView getSeat, getPrice;
     Button buttonContinueDetail;
     ImageView buttonBackSeats;
-    String name, email, from, to, date, seats, price, uid;
+    Calendar calendar;
+    String name, email, from, to, date, time, seats, price, longTime, totalTime, totalDate, uid;
     String pos;
     String[] data = {"A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", };
     private ArrayList<String> checkSeats = new ArrayList<>();;
@@ -54,8 +60,11 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
+        calendar = Calendar.getInstance();
+
         seatsLoading = (ProgressBar) findViewById(R.id.seatsLoading);
         getSeat = findViewById(R.id.getSeat);
+        getPrice = findViewById(R.id.getPrice);
         buttonBackSeats = (ImageView) findViewById(R.id.buttonBackSeats);
         buttonContinueDetail = findViewById(R.id.buttonContinueDetail);
 
@@ -72,7 +81,9 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
             getSeat.setText("seat");
         }else{
             getDataOnrestart();
+            Log.i("show", "show price"+ price );
             getSeat.setText(seats);
+            getPrice.setText(price);
         }
     }
 
@@ -84,9 +95,13 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         item.put("from", from);
         item.put("to", to);
         item.put("date", date);
+        item.put("time", time);
         item.put("price", price);
+        item.put("longTime", longTime);
         item.put("seats", seats);
         item.put("position", pos);
+        item.put("totalTime", totalTime);
+        item.put("totalDate", totalDate);
 
         db.collection("booking")
                 .add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -103,7 +118,6 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void saveDataOnrestart(){
-
         SharedPreferences sharedPreferences = getSharedPreferences("save", 0);
         SharedPreferences.Editor data = sharedPreferences.edit();
         data.putString("uid", uid);
@@ -112,10 +126,16 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         data.putString("from", from);
         data.putString("to", to);
         data.putString("date", date);
+        data.putString("time", time);
+        data.putString("price", price);
+        data.putString("longTime", longTime);
+//        data.putString("totalTime", totalTime);
+//        data.putString("totalDate", totalDate);
 
         data.apply();
     }
 
+    @SuppressLint("SimpleDateFormat")
     private  void getDataOnrestart(){
         SharedPreferences sharedPreferences = getSharedPreferences("save", 0);
         uid = sharedPreferences.getString("uid", "");
@@ -124,8 +144,14 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         from = sharedPreferences.getString("from","");
         to = sharedPreferences.getString("to","");
         date = sharedPreferences.getString("date","");
+        time = sharedPreferences.getString("time", "");
+        price = sharedPreferences.getString("price", "");
+        longTime = sharedPreferences.getString("longTime", "");
+//        totalTime = sharedPreferences.getString("totalTime", "");
+//        totalDate = sharedPreferences.getString("totalDate", "");
+        getTimeDate(date, time, longTime);
+        Log.i("timer", time);
         pos = getIntent().getStringExtra("pos");
-        price = "Rp.300.000";
     }
 
     private void setAdapter(){
@@ -145,17 +171,13 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
-
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 String seats = document.getString("position");
                                 checkSeats.add(seats);
                             }
 
-                            Log.i("send", String.valueOf(checkSeats));
-
                             seatsLoading.setVisibility(View.GONE);
                             setAdapter();
-
                         }else{
                             Toast.makeText(getApplicationContext(), "Error, cannot get data. Please check your internet", Toast.LENGTH_SHORT).show();
                         }
@@ -171,7 +193,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                 onBackPressed();
                 break;
             case R.id.buttonContinueDetail:
-                if(MyRecyclerViewAdapter.dataSeat == null && price == null){
+                if(MyRecyclerViewAdapter.dataSeat == null){
                     Toast.makeText(SeatsActivity.this, "Please select your seats", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -197,7 +219,12 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
             from = getIntent().getStringExtra("from");
             to = getIntent().getStringExtra("to");
             date = getIntent().getStringExtra("date");
-
+            time = getIntent().getStringExtra("time");
+            price = getIntent().getStringExtra("price");
+            longTime = getIntent().getStringExtra("longTime");
+//            totalTime = getIntent().getStringExtra("totalTime");
+//            totalDate = getIntent().getStringExtra("totalDate");
+            getPrice.setText(price);
             saveDataOnrestart();
 
         }
@@ -209,5 +236,41 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     public void onBackPressed() {
         super.onBackPressed();
         MyRecyclerViewAdapter.dataSeat = null;
+        Intent intent = new Intent(SeatsActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
+
+
+    @SuppressLint("SimpleDateFormat")
+    private void getTimeDate(String date, String time, String longTime){
+        String pola = "MMM d, yyyy HH:mm";
+        Date dateTime = null;
+        String showTimeDate;
+        SimpleDateFormat formatter= new SimpleDateFormat(pola);
+
+        try {
+            dateTime = formatter.parse(date + " " + time);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        assert dateTime != null;
+        calendar.setTime(dateTime);
+        calendar.add(Calendar.HOUR, Integer.parseInt(longTime));
+
+        showTimeDate = formatter.format(calendar.getTime());
+
+        if(showTimeDate.length() == 17){
+            totalDate = showTimeDate.substring(0, 11);
+            totalTime = showTimeDate.substring(12, 17);
+        }else{
+            totalDate = showTimeDate.substring(0, 12);
+            totalTime = showTimeDate.substring(13, 18);
+        }
+    }
+
+
+
 }

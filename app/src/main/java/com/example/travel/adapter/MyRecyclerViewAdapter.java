@@ -55,18 +55,21 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.setIsRecyclable(false);
         holder.myTextView.setText(mData[position]);
 
         for(int x = position; x < mData.length; x++){
             if(checkSeats.size() != 0){
+                Log.i("show", checkSeats.toString());
                 for(int y = 0; y < checkSeats.size(); y++){
                     if(Integer.parseInt(checkSeats.get(y)) == position){
+
                         holder.myTextView.setBackgroundResource(R.drawable.ic_close);
                         holder.myTextView.setText("");
                     }
                     else if(lastIndex != 0 && Integer.parseInt(pos) == position){
                         holder.myTextView.setBackgroundResource(R.drawable.main_outlined_selected);
-                        holder.myTextView.setTextColor(R.color.main_color);
+                        holder.myTextView.setTextColor(R.color.black);
                     }
                 }
             }
@@ -92,7 +95,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         public void onClick(View view) {
             
             if(lastIndex <= 1 || dataSeat == null){
-
                 for(int x = 0; x < checkSeats.size(); x++){
                     if(getAdapterPosition() == Integer.parseInt(checkSeats.get(x))){
                         Toast.makeText(activity, "Sorry, this seat unavailable", Toast.LENGTH_SHORT).show();
@@ -104,6 +106,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private void dialog(int position, TextView textView){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Message").setMessage("Are you sure you select this seat? you cannot change your seat after this.").setCancelable(false).setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
@@ -114,7 +117,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             intent.putExtra("data", dataSeat);
             intent.putExtra("pos", pos);
             textView.setBackgroundResource(R.drawable.main_outlined_selected);
-            textView.setTextColor(Color.GRAY);
+            textView.setTextColor(R.color.black);
             activity.startActivityForResult(intent, 1);
             activity.finish();
             activity.finish();

@@ -58,10 +58,7 @@ public class LoginSignupActivity extends AppCompatActivity implements View.OnCli
 
         if (requestCode == 100) {
             Task<GoogleSignInAccount> signInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
-//            Toast.makeText(this, "MASUK DI BAGIAN IF", Toast.LENGTH_SHORT).show();
-            // masuk sini toast tidak muncul
             if (signInAccountTask.isSuccessful()) {
-                Toast.makeText(this, "MASUK BAGIAN TRY", Toast.LENGTH_SHORT).show();
                 try {
                     GoogleSignInAccount googleSignInAccount = signInAccountTask.getResult(ApiException.class);
                     AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(), null);
@@ -79,11 +76,8 @@ public class LoginSignupActivity extends AppCompatActivity implements View.OnCli
                         }
                     });
                 } catch (ApiException e) {
-                    Toast.makeText(this, "MASUK BAGIAN CATCH", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
-            }else{
-                Toast.makeText(this, "MASUK DI ELSE TOAST", Toast.LENGTH_SHORT).show();
             }
         }
     }
