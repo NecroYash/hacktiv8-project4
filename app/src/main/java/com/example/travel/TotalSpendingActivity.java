@@ -25,7 +25,7 @@ public class TotalSpendingActivity extends AppCompatActivity {
     FirebaseFirestore db;
 
     ProgressBar progressBar;
-    TextView totalSpending;
+    TextView totalSpending,customerName;
 
     ArrayList<String> getTotalSpending = new ArrayList<>();
     double getTotal;
@@ -40,6 +40,7 @@ public class TotalSpendingActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBarTotalSpending);
         totalSpending = (TextView) findViewById(R.id.totalSpending);
+        customerName = (TextView) findViewById(R.id.customerName);
     }
 
 
@@ -69,9 +70,13 @@ public class TotalSpendingActivity extends AppCompatActivity {
                 });
     }
 
+    private void showData() {
+        customerName.setText("Hi, " + auth.getCurrentUser().getDisplayName());
+    }
     @Override
     protected void onStart() {
         super.onStart();
         getData();
+        showData();
     }
 }
