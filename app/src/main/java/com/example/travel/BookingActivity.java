@@ -25,6 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -39,10 +41,10 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     ArrayList<String> date = new ArrayList<>();;
     ArrayList<String> time = new ArrayList<>();;
     ArrayList<String> seat = new ArrayList<>();;
-    ArrayList<String>  price = new ArrayList<>();;
+    ArrayList<Double>  price = new ArrayList<>();;
     ArrayList<String>  totalTime = new ArrayList<>();;
     ArrayList<String>  totalDate = new ArrayList<>();;
-    ArrayList<String>  longTime = new ArrayList<>();;
+    ArrayList<Integer>  longTime = new ArrayList<>();;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +81,10 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                                 String dataDate = document.getString("date");
                                 String dataTime = document.getString("time");
                                 String dataSeat = document.getString("seats");
-                                String dataPrice = document.getString("price");
+                                double dataPrice = Objects.requireNonNull(document.getLong("price"));
                                 String dataTotalTime = document.getString("totalTime");
                                 String dataTotalDate = document.getString("totalDate");
-                                String dataLongTime = document.getString("longTime");
+                                int dataLongTime = Objects.requireNonNull(document.getLong("longTime")).intValue();
                                 date.add(dataDate);
                                 seat.add(dataSeat);
                                 price.add(dataPrice);
@@ -119,4 +121,6 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         onBackPressed();
     }
+
+
 }

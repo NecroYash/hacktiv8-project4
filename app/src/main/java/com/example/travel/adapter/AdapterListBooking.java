@@ -13,16 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travel.R;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.ViewHolder> {
 
     Context context;
-    ArrayList<String> date, seat, price, time, totalTime, totalDate, longTime;
+    ArrayList<String> date, seat, time, totalTime, totalDate;
+    ArrayList<Double> price;
+    ArrayList<Integer> longTime;
     private LayoutInflater mInflater;
 
-    public AdapterListBooking(Context context, ArrayList<String> date, ArrayList<String> seat, ArrayList<String> price, ArrayList<String> time, ArrayList<String> totalTime, ArrayList<String> totalDate, ArrayList<String> longTime) {
+    public AdapterListBooking(Context context, ArrayList<String> date, ArrayList<String> seat, ArrayList<Double> price, ArrayList<String> time, ArrayList<String> totalTime, ArrayList<String> totalDate, ArrayList<Integer> longTime) {
         this.context = context;
         this.date = date;
         this.seat = seat;
@@ -48,12 +52,25 @@ public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.
     public void onBindViewHolder(@NonNull AdapterListBooking.ViewHolder holder, int position) {
         holder.dateBooking.setText(date.get(position));
         holder.seatBooking.setText(seat.get(position));
-        holder.priceBooking.setText(price.get(position));
+        holder.priceBooking.setText(getPrice(price.get(position)));
 
         holder.timeBooking.setText(time.get(position));
         holder.totalTimeBooking.setText(totalTime.get(position));
         holder.totalDateBooking.setText(totalDate.get(position));
         holder.longTime.setText(longTime.get(position) + "H");
+    }
+
+    private String getPrice(double price){
+        DecimalFormat id = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        id.setDecimalFormatSymbols(formatRp);
+
+        return String.format("%s %n", id.format(price));
     }
 
     @Override
@@ -77,4 +94,5 @@ public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.
             longTime = itemView.findViewById(R.id.longTime);
         }
     }
+
 }

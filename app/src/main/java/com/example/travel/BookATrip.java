@@ -33,12 +33,12 @@ public class BookATrip extends AppCompatActivity {
         arrClock = findViewById(R.id.jam_sampai);
         platBus = findViewById(R.id.platBus);
         seatAvailable = findViewById(R.id.seatAvailable);
-        classBus = findViewById(R.id.classBus);
-        ratePrice = findViewById(R.id.RatePrice);
-        totPrice = findViewById(R.id.TotPrice);
-
-        // button
-        btnBook = findViewById(R.id.btnBooking);
+//        classBus = findViewById(R.id.classBus);
+//        ratePrice = findViewById(R.id.RatePrice);
+//        totPrice = findViewById(R.id.TotPrice);
+//
+//        // button
+//        btnBook = findViewById(R.id.btnBooking);
         btnDetailPict = findViewById(R.id.btnLihatFoto);
 
         // image

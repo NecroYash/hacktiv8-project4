@@ -28,6 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,7 +49,9 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     Button buttonContinueDetail;
     ImageView buttonBackSeats;
     Calendar calendar;
-    String name, email, from, to, date, time, seats, price, longTime, totalTime, totalDate, uid;
+    String name, email, from, to, date, time, seats, totalTime, totalDate, uid;
+    int longTime;
+    Double price;
     String pos;
     String[] data = {"A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", "A", "B", "C", "D", };
     private ArrayList<String> checkSeats = new ArrayList<>();;
@@ -81,9 +85,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
             getSeat.setText("seat");
         }else{
             getDataOnrestart();
-            Log.i("show", "show price"+ price );
             getSeat.setText(seats);
-            getPrice.setText(price);
+            getPrice.setText(getPrice(price));
         }
     }
 
@@ -127,10 +130,10 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         data.putString("to", to);
         data.putString("date", date);
         data.putString("time", time);
-        data.putString("price", price);
-        data.putString("longTime", longTime);
-//        data.putString("totalTime", totalTime);
-//        data.putString("totalDate", totalDate);
+        data.putString("price", String.valueOf(price));
+        data.putInt("longTime", longTime);
+        data.putString("totalTime", totalTime);
+        data.putString("totalDate", totalDate);
 
         data.apply();
     }
@@ -145,12 +148,10 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         to = sharedPreferences.getString("to","");
         date = sharedPreferences.getString("date","");
         time = sharedPreferences.getString("time", "");
-        price = sharedPreferences.getString("price", "");
-        longTime = sharedPreferences.getString("longTime", "");
-//        totalTime = sharedPreferences.getString("totalTime", "");
-//        totalDate = sharedPreferences.getString("totalDate", "");
-        getTimeDate(date, time, longTime);
-        Log.i("timer", time);
+        price = Double.valueOf(sharedPreferences.getString("price", ""));
+        longTime = sharedPreferences.getInt("longTime", 0);
+        totalTime = sharedPreferences.getString("totalTime", "");
+        totalDate = sharedPreferences.getString("totalDate", "");
         pos = getIntent().getStringExtra("pos");
     }
 
@@ -220,11 +221,12 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
             to = getIntent().getStringExtra("to");
             date = getIntent().getStringExtra("date");
             time = getIntent().getStringExtra("time");
-            price = getIntent().getStringExtra("price");
-            longTime = getIntent().getStringExtra("longTime");
-//            totalTime = getIntent().getStringExtra("totalTime");
-//            totalDate = getIntent().getStringExtra("totalDate");
-            getPrice.setText(price);
+            price = getIntent().getDoubleExtra("price", 0);
+            longTime = getIntent().getIntExtra("longTime", 0);
+            totalTime = getIntent().getStringExtra("totalTime");
+            totalDate = getIntent().getStringExtra("totalDate");
+
+            getPrice.setText(getPrice(price));
             saveDataOnrestart();
 
         }
@@ -243,34 +245,16 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    @SuppressLint("SimpleDateFormat")
-    private void getTimeDate(String date, String time, String longTime){
-        String pola = "MMM d, yyyy HH:mm";
-        Date dateTime = null;
-        String showTimeDate;
-        SimpleDateFormat formatter= new SimpleDateFormat(pola);
+    private String getPrice(double price){
+        DecimalFormat id = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
 
-        try {
-            dateTime = formatter.parse(date + " " + time);
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
 
-        assert dateTime != null;
-        calendar.setTime(dateTime);
-        calendar.add(Calendar.HOUR, Integer.parseInt(longTime));
+        id.setDecimalFormatSymbols(formatRp);
 
-        showTimeDate = formatter.format(calendar.getTime());
-
-        if(showTimeDate.length() == 17){
-            totalDate = showTimeDate.substring(0, 11);
-            totalTime = showTimeDate.substring(12, 17);
-        }else{
-            totalDate = showTimeDate.substring(0, 12);
-            totalTime = showTimeDate.substring(13, 18);
-        }
+        return String.format("%s %n", id.format(price));
     }
-
-
-
 }

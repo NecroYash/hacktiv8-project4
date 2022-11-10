@@ -18,7 +18,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TotalSpendingActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,7 +32,7 @@ public class TotalSpendingActivity extends AppCompatActivity implements View.OnC
     TextView totalSpending,customerName;
     ImageView buttonBack;
 
-    ArrayList<String> getTotalSpending = new ArrayList<>();
+    ArrayList<Double> getTotalSpending = new ArrayList<>();
     double getTotal;
 
     @Override
@@ -51,7 +54,7 @@ public class TotalSpendingActivity extends AppCompatActivity implements View.OnC
     private void getData(){
         progressBar.setVisibility(View.VISIBLE);
 
-        db.collection("booking")
+        db.collection("booking").whereEqualTo("uid", auth.getCurrentUser().getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
@@ -59,14 +62,14 @@ public class TotalSpendingActivity extends AppCompatActivity implements View.OnC
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
                             for (QueryDocumentSnapshot document : task.getResult()){
-                                String price = document.getString("price");
+                                double price = document.getLong("price");
                                 getTotalSpending.add(price);
                             }
                             for(int x = 0; x<getTotalSpending.size(); x++){
-                                getTotal += Double.parseDouble(getTotalSpending.get(x));
+                                getTotal += getTotalSpending.get(x);
                             }
                             progressBar.setVisibility(View.GONE);
-                            totalSpending.setText("Rp"+getTotal+"00,00");
+                            totalSpending.setText(getPrice(getTotal));
                         }else{
                             Toast.makeText(getApplicationContext(), "Error, cannot get data. Please check your internet", Toast.LENGTH_SHORT).show();
                         }
@@ -91,5 +94,19 @@ public class TotalSpendingActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View view) {
         onBackPressed();
+    }
+
+
+    private String getPrice(double price){
+        DecimalFormat id = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        id.setDecimalFormatSymbols(formatRp);
+
+        return String.format("%s %n", id.format(price));
     }
 }

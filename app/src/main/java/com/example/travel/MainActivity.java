@@ -38,6 +38,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     FirebaseAuth auth;
@@ -49,15 +51,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout buttonSelectDate, buttonSelectedTime;
     TextView selectedDated, selectedTime;
     Calendar calendar;
-    String date, time;
+    String date, time = "";
     String[] from = { "Bandung", "Yogyakarta", "Solo", "Jakarta", "Surabaya", "Semarang"};
     String[] to = from;
-    String price, longTime, totalTime, totalDate = "";
+    String  totalTime, totalDate = "";
+    double price = 0;
+    int longTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        calendar = Calendar.getInstance();
+
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         topImageUser = (ImageView) findViewById(R.id.topImage);
@@ -80,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
+        calendar = Calendar.getInstance();
         getImageUser();
     }
 
@@ -136,10 +142,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onPositiveButtonClick(Object selection) {
-                date = materialDatePicker.getHeaderText();
+                Calendar utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                utc.setTimeInMillis((Long) selection);
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("MMM d, yyyy");
+                date = format.format(utc.getTime());
                 selectedDated.setText(date);
 
             }
@@ -186,8 +194,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         checkPriceAndTime();
-//        getTimeDate(date, time, longTime);
-
+        getTimeDate(date, time, longTime);
         Intent intent = new Intent(MainActivity.this, SeatsActivity.class);
         intent.putExtra("uid", auth.getCurrentUser().getUid());
         intent.putExtra("name", auth.getCurrentUser().getDisplayName());
@@ -198,8 +205,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("time", time);
         intent.putExtra("price", price);
         intent.putExtra("longTime", longTime);
-//        intent.putExtra("totalTime", totalTime);
-//        intent.putExtra("totalDate", totalDate);
+        intent.putExtra("totalTime", totalTime);
+        intent.putExtra("totalDate", totalDate);
         startActivity(intent);
     }
 
@@ -208,79 +215,78 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String to = dropdownTo.getSelectedItem().toString();
 
         if(from.equals("Solo") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Solo")){
-            price = "25.000";
-            longTime = "2";
+            price = 25000;
+            longTime = 2;
         }else if(from.equals("Solo") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Solo")){
-            price = "90.000";
-            longTime = "4";
+            price = 90000;
+            longTime = 4;
         }else if(from.equals("Surabaya") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Surabaya")){
-            price = "150.000";
-            longTime = "5";
+            price = 150000;
+            longTime = 5;
         }else if(from.equals("Jakarta") && to.equals("Solo") || from.equals("Solo") && to.equals("Jakarta")){
-            price = "165.000";
-            longTime = "7";
+            price = 165000;
+            longTime = 7;
         }else if(from.equals("Jakarta") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Jakarta")){
-            price = "180.000";
-            longTime = "8";
+            price = 180000;
+            longTime = 8;
         }else if(from.equals("Jakarta") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Jakarta")){
-            price = "250.000";
-            longTime = "10";
+            price = 250000;
+            longTime = 10;
         }else if(from.equals("Bandung") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Bandung")){
-            price = "180.000";
-            longTime = "10";
+            price = 180000;
+            longTime = 10;
         }else if(from.equals("Bandung") && to.equals("Jakarta") || from.equals("Jakarta") && to.equals("Bandung")){
-            price = "80.000";
-            longTime = "3";
+            price = 80000;
+            longTime = 3;
         }else if(from.equals("Bandung") && to.equals("Solo") || from.equals("Solo") && to.equals("Bandung")){
-            price = "165.000";
-            longTime = "9";
+            price = 165000;
+            longTime = 9;
         }else if(from.equals("Bandung") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Bandung")){
-            price = "275.000";
-            longTime = "9";
+            price = 275000;
+            longTime = 9;
         }else if(from.equals("Bandung") && to.equals("Semarang") || from.equals("Semarang") && to.equals("Bandung")){
-            price = "220.000";
-            longTime = "7";
+            price = 220000;
+            longTime = 7;
         }else if(from.equals("Jakarta") && to.equals("Semarang") || from.equals("Semarang") && to.equals("Jakarta")){
-            price = "250.000";
-            longTime = "9";
+            price = 250000;
+            longTime = 9;
         }else if(from.equals("Semarang") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Semarang")){
-            price = "65.000";
-            longTime = "3";
+            price = 65000;
+            longTime = 3;
         }else if(from.equals("Semarang") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Semarang")){
-            price = "130.000";
-            longTime = "9";
+            price = 130000;
+            longTime = 9;
         }else if(from.equals("Solo") && to.equals("Semarang") || from.equals("Semarang") && to.equals("Solo")){
-            price = "70.000";
-            longTime = "4";
+            price = 70000;
+            longTime = 4;
         }
     }
 
 
-//    @SuppressLint("SimpleDateFormat")
-//    private void getTimeDate(String date, String time, String longTime){
-//        String pola = "MMM d, yyyy HH:mm";
-//        Date dateTime = null;
-//        String showTimeDate;
-//        SimpleDateFormat formatter= new SimpleDateFormat(pola);
-//
-//        try {
-//            dateTime = formatter.parse(date + " " + time);
-//        } catch (ParseException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        assert dateTime != null;
-//        calendar.setTime(dateTime);
-//        calendar.add(Calendar.HOUR, Integer.parseInt(longTime));
-//
-//        showTimeDate = formatter.format(calendar.getTime());
-//
-//        if(showTimeDate.length() == 17){
-//            totalDate = showTimeDate.substring(0, 11);
-//            totalTime = showTimeDate.substring(12, 17);
-//        }else{
-//            totalDate = showTimeDate.substring(0, 12);
-//            totalTime = showTimeDate.substring(13, 18);
-//        }
-//    }
+    @SuppressLint("SimpleDateFormat")
+    private void getTimeDate(String date, String time, int longTime){
+        String pola = "MMM d, yyyy HH:mm";
+        Date dateTime = null;
+        String showTimeDate;
+        SimpleDateFormat formatter= new SimpleDateFormat(pola);
+        String check = date + " " + time;
+        try {
+            dateTime = formatter.parse(check);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        calendar.setTime(dateTime);
+        calendar.add(Calendar.HOUR, 10);
+
+        showTimeDate = formatter.format(calendar.getTime());
+
+        if(showTimeDate.length() == longTime){
+            totalDate = showTimeDate.substring(0, 11);
+            totalTime = showTimeDate.substring(12, 17);
+        }else{
+            totalDate = showTimeDate.substring(0, 12);
+            totalTime = showTimeDate.substring(13, 18);
+        }
+    }
 }
