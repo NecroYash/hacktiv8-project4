@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,13 +20,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class TotalSpendingActivity extends AppCompatActivity {
+public class TotalSpendingActivity extends AppCompatActivity implements View.OnClickListener {
 
     FirebaseAuth auth;
     FirebaseFirestore db;
 
     ProgressBar progressBar;
     TextView totalSpending,customerName;
+    ImageView buttonBack;
 
     ArrayList<String> getTotalSpending = new ArrayList<>();
     double getTotal;
@@ -41,6 +43,8 @@ public class TotalSpendingActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBarTotalSpending);
         totalSpending = (TextView) findViewById(R.id.totalSpending);
         customerName = (TextView) findViewById(R.id.customerName);
+        buttonBack = findViewById(R.id.buttonBackSpend);
+        buttonBack.setOnClickListener(this);
     }
 
 
@@ -78,5 +82,14 @@ public class TotalSpendingActivity extends AppCompatActivity {
         super.onStart();
         getData();
         showData();
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public void onClick(View view) {
+        onBackPressed();
     }
 }
