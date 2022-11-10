@@ -22,6 +22,7 @@
             android:padding="5dp">
 
             <ImageView
+                android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -33,14 +34,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nexa_regular"
                 android:text="Book A Trip"
                 android:textColor="@color/black"
-                android:textSize="17sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
@@ -87,6 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15sp"
+                android:fontFamily="@font/nexa_bold"
                 android:text="Sempati Star"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -142,6 +144,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nexa_bold"
                 android:text="lihat foto"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -155,69 +158,11 @@
     </androidx.cardview.widget.CardView>
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/infoPrice"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/RatePrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="16dp"
-                android:text="2 x 166.000,00"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/TotPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rp.332.000,00"
-                android:textColor="@color/main_color"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/RatePrice"
-                app:layout_constraintTop_toBottomOf="@id/RatePrice"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <Button
-                android:id="@+id/btnBooking"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="20dp"
-                android:background="@color/main_color"
-                android:text="BOOK NOW"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/TotPrice"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/infoPrice"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/background">
@@ -242,13 +187,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#E3E3E3"
+
                     android:padding="20dp">
 
                     <TextView
                         android:id="@+id/kota_pertama"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nexa_bold"
                         android:text="MEDAN"
+
                         android:textColor="@color/main_color"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -260,6 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="1dp"
+                        android:fontFamily="@font/nexa_bold"
                         android:text="17:35"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -270,7 +219,9 @@
                         android:id="@+id/kota_kedua"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nexa_bold"
                         android:text="PEKANBARU"
+
                         android:textColor="@color/main_color"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -282,7 +233,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="1dp"
+                        android:fontFamily="@font/nexa_bold"
                         android:text="09:10"
+
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="@+id/kota_kedua"
@@ -293,6 +246,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="25dp"
+                        android:fontFamily="@font/nexa_regular"
                         android:text="Date"
                         android:textSize="15sp"
                         app:layout_constraintStart_toStartOf="@+id/jam_berangkat"
@@ -303,8 +257,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="1dp"
+                        android:fontFamily="@font/nexa_regular"
                         android:text="23 Jul 2019"
                         android:textSize="15sp"
+
                         app:layout_constraintStart_toStartOf="@id/txtDate"
                         app:layout_constraintTop_toBottomOf="@id/txtDate" />
 
@@ -313,6 +269,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="25dp"
+                        android:fontFamily="@font/nexa_regular"
+
                         android:text="Bus No."
                         android:textSize="15sp"
                         app:layout_constraintEnd_toEndOf="@id/jam_sampai"
@@ -323,7 +281,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="1dp"
+                        android:fontFamily="@font/nexa_regular"
                         android:text="P 1208 NN"
+
                         android:textSize="15sp"
                         app:layout_constraintEnd_toEndOf="@id/txtBus"
                         app:layout_constraintTop_toBottomOf="@id/txtBus" />
@@ -343,6 +303,7 @@
                 app:layout_constraintTop_toBottomOf="@id/cardInfo">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/information"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#FFFFFF"
@@ -352,6 +313,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nexa_bold"
                         android:text="Available seat"
                         android:textColor="@color/main_color"
                         android:textSize="20sp"
@@ -364,23 +326,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:fontFamily="@font/nexa_regular"
                         android:text="24 Seat are available"
                         android:textColor="@color/text_color"
+
                         android:textSize="17sp"
                         app:layout_constraintStart_toStartOf="@+id/textView2"
                         app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-                    <TextView
-                        android:id="@+id/reserveSeat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2 x 2 Seat arragement"
-                        android:textColor="@color/text_color"
-                        android:textSize="17sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@id/seatAvailable"
-                        app:layout_constraintTop_toTopOf="@+id/seatAvailable" />
 
 
                     <TextView
@@ -388,7 +340,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:fontFamily="@font/nexa_bold"
                         android:text="Class"
+
                         android:textColor="@color/main_color"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -400,7 +354,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:fontFamily="@font/nexa_regular"
                         android:text="Economy Bus"
+
                         android:textColor="@color/text_color"
                         android:textSize="17sp"
                         app:layout_constraintStart_toStartOf="@id/txtClass"
@@ -411,7 +367,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:fontFamily="@font/nexa_bold"
                         android:text="Facility"
+
                         android:textColor="@color/main_color"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -432,9 +390,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
+                        android:fontFamily="@font/nexa_regular"
                         android:text="Toilet"
                         android:textColor="@color/text_color"
                         android:textSize="16dp"
+
                         app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
                         app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
 
@@ -452,6 +412,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
+                        android:fontFamily="@font/nexa_regular"
                         android:text="Rest Stop"
                         android:textColor="@color/text_color"
                         android:textSize="16dp"
@@ -460,6 +421,7 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             </androidx.cardview.widget.CardView>
 
@@ -492,17 +454,32 @@
 
             </androidx.cardview.widget.CardView>
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nexa_bold"
+                android:text="PAYMENT"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/AvailableSeat"
+                tools:layout_editor_absoluteX="10dp" />
+
             <TextView
                 android:id="@+id/dateNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:fontFamily="@font/nexa_regular"
                 android:text="Friday, 23 Jul 2019"
                 app:layout_constraintStart_toStartOf="@+id/cardInfo"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
     </ScrollView>
