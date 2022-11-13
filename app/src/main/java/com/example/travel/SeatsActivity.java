@@ -30,6 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -199,8 +200,18 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                     return;
                 }
                 addBooking();
-                Intent intent = new Intent(SeatsActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Intent intent = new Intent(SeatsActivity.this, BookATrip.class);
+
+                intent.putExtra("dateBooking", date);
+                intent.putExtra("fromBooking", from);
+                intent.putExtra("toBooking", to);
+                intent.putExtra("seatBooking", seats);
+                intent.putExtra("timeBooking", time);
+                intent.putExtra("totalTimeBooking", totalTime);
+                intent.putExtra("totalDateBooking", totalDate);
+                intent.putExtra("longTime", longTime);
+                intent.putExtra("priceBooking", getPrice(price));
+                intent.putExtra("context", "notList");
                 startActivity(intent);
                 MyRecyclerViewAdapter.dataSeat = null;
                 break;
@@ -246,15 +257,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
 
 
     private String getPrice(double price){
-        DecimalFormat id = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-
-        id.setDecimalFormatSymbols(formatRp);
-
-        return String.format("%s %n", id.format(price));
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        return formatRupiah.format(price);
     }
 }

@@ -3,36 +3,44 @@ package com.example.travel.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.travel.BookATrip;
 import com.example.travel.R;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.ViewHolder> {
 
     Context context;
-    ArrayList<String> date, seat, time, totalTime, totalDate;
+    ArrayList<String> date, from, to, seat, time, totalTime, totalDate;
     ArrayList<Double> price;
     ArrayList<Integer> longTime;
     private LayoutInflater mInflater;
 
-    public AdapterListBooking(Context context, ArrayList<String> date, ArrayList<String> seat, ArrayList<Double> price, ArrayList<String> time, ArrayList<String> totalTime, ArrayList<String> totalDate, ArrayList<Integer> longTime) {
+    public AdapterListBooking(Context context, ArrayList<String> date, ArrayList<String> from, ArrayList<String> to, ArrayList<String> seat, ArrayList<Double> price, ArrayList<String> time, ArrayList<String> totalTime, ArrayList<String> totalDate, ArrayList<Integer> longTime) {
         this.context = context;
         this.date = date;
+        this.from = from;
+        this.to = to;
         this.seat = seat;
         this.price = price;
         this.mInflater = LayoutInflater.from(context);
-
         this.time = time;
         this.totalTime = totalTime;
         this.totalDate = totalDate;
@@ -51,9 +59,10 @@ public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.
     @Override
     public void onBindViewHolder(@NonNull AdapterListBooking.ViewHolder holder, int position) {
         holder.dateBooking.setText(date.get(position));
+        holder.fromBooking.setText(from.get(position));
+        holder.toBooking.setText(to.get(position));
         holder.seatBooking.setText(seat.get(position));
-        holder.priceBooking.setText(getPrice(price.get(position)));
-
+        holder.priceBooking.setText(getPrice(price.get(position))+"");
         holder.timeBooking.setText(time.get(position));
         holder.totalTimeBooking.setText(totalTime.get(position));
         holder.totalDateBooking.setText(totalDate.get(position));
@@ -61,16 +70,9 @@ public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.
     }
 
     private String getPrice(double price){
-        DecimalFormat id = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-
-        id.setDecimalFormatSymbols(formatRp);
-
-        return String.format("%s %n", id.format(price));
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        return formatRupiah.format(price);
     }
 
     @Override
@@ -79,12 +81,14 @@ public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView dateBooking, seatBooking, priceBooking, timeBooking, totalTimeBooking, totalDateBooking, longTime;
+        ConstraintLayout rowBooking;
+        TextView dateBooking, fromBooking, toBooking,  seatBooking, priceBooking, timeBooking, totalTimeBooking, totalDateBooking, longTime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             dateBooking = itemView.findViewById(R.id.dateBookingList);
+            fromBooking = itemView.findViewById(R.id.fromBookingList);
+            toBooking = itemView.findViewById(R.id.toBookingList);
             seatBooking = itemView.findViewById(R.id.seatBookingList);
             priceBooking = itemView.findViewById(R.id.priceBookingList);
 
@@ -92,6 +96,27 @@ public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.
             totalTimeBooking = itemView.findViewById(R.id.totalTime);
             totalDateBooking = itemView.findViewById(R.id.totalDate);
             longTime = itemView.findViewById(R.id.longTime);
+
+            rowBooking = itemView.findViewById(R.id.rowBookingProfile);
+
+            rowBooking.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, BookATrip.class);
+                    intent.putExtra("dateBooking", dateBooking.getText().toString());
+                    intent.putExtra("fromBooking", fromBooking.getText().toString());
+                    intent.putExtra("toBooking", toBooking.getText().toString());
+                    intent.putExtra("seatBooking", seatBooking.getText().toString());
+                    intent.putExtra("timeBooking", timeBooking.getText().toString());
+                    intent.putExtra("totalTimeBooking", totalTimeBooking.getText().toString());
+                    intent.putExtra("totalDateBooking", totalDateBooking.getText().toString());
+                    intent.putExtra("longTime", longTime.getText().toString());
+                    intent.putExtra("priceBooking", priceBooking.getText().toString());
+                    intent.putExtra("context", "list");
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

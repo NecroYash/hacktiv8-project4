@@ -3,6 +3,7 @@ package com.example.travel;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +39,10 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     AdapterListBooking adapter;
     ProgressBar loadingBookingList;
     ImageView buttonBack;
+
     ArrayList<String> date = new ArrayList<>();;
+    ArrayList<String> from = new ArrayList<>();;
+    ArrayList<String> to = new ArrayList<>();;
     ArrayList<String> time = new ArrayList<>();;
     ArrayList<String> seat = new ArrayList<>();;
     ArrayList<Double>  price = new ArrayList<>();;
@@ -52,8 +56,10 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_booking);
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        
 
         buttonBack = findViewById(R.id.buttonBackBooking);
+        
         buttonBack.setOnClickListener(this);
 
         loadingBookingList = findViewById(R.id.loadingBookingList);
@@ -62,7 +68,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
 
     private void setAdapter(){
         recyclerView = findViewById(R.id.rvBooking);
-        adapter = new AdapterListBooking(getApplicationContext(), date, seat, price, time, totalTime, totalDate, longTime);
+        adapter = new AdapterListBooking(getApplicationContext(), date, from, to, seat, price, time, totalTime, totalDate, longTime);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(BookingActivity.this));
     }
@@ -76,9 +82,17 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
-
+                            date.clear();
+                            seat.clear();
+                            price.clear();
+                            time.clear();
+                            totalTime.clear();
+                            totalDate.clear();
+                            longTime.clear();
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 String dataDate = document.getString("date");
+                                String dataFrom = document.getString("from");
+                                String dataTo = document.getString("to");
                                 String dataTime = document.getString("time");
                                 String dataSeat = document.getString("seats");
                                 double dataPrice = Objects.requireNonNull(document.getLong("price"));
@@ -86,15 +100,14 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                                 String dataTotalDate = document.getString("totalDate");
                                 int dataLongTime = Objects.requireNonNull(document.getLong("longTime")).intValue();
                                 date.add(dataDate);
+                                from.add(dataFrom);
+                                to.add(dataTo);
                                 seat.add(dataSeat);
                                 price.add(dataPrice);
-
                                 time.add(dataTime);
                                 totalTime.add(dataTotalTime);
                                 totalDate.add(dataTotalDate);
                                 longTime.add(dataLongTime);
-
-
                             }
                             loadingBookingList.setVisibility(View.GONE);
                             setAdapter();
@@ -117,9 +130,14 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         super.onBackPressed();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
-        onBackPressed();
+        switch (view.getId()){
+            case R.id.buttonBackBooking:
+                onBackPressed();
+                break;
+        }
     }
 
 

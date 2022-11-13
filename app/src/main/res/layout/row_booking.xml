@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:padding="15dp"
     android:layout_marginBottom="15dp"
-    android:background="@drawable/white_bg_rounded">
+    android:id="@+id/rowBookingProfile"
+    android:background="@drawable/outlined_white_button">
 
     <LinearLayout
         android:id="@+id/linearBusName"
@@ -53,6 +54,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fromBookingList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/nexa_regular"
+                    android:text="From"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/timeBookingList"
@@ -114,6 +125,17 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/toBookingList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="To"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/nexa_regular"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    />
 
                 <TextView
                     android:id="@+id/totalTime"

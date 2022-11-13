@@ -20,7 +20,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 public class TotalSpendingActivity extends AppCompatActivity implements View.OnClickListener {
@@ -69,7 +71,11 @@ public class TotalSpendingActivity extends AppCompatActivity implements View.OnC
                                 getTotal += getTotalSpending.get(x);
                             }
                             progressBar.setVisibility(View.GONE);
-                            totalSpending.setText(getPrice(getTotal));
+                            if(getTotal == 0){
+                                totalSpending.setText("Rp0");
+                                return;
+                            }
+                            totalSpending.setText(getPrice(getTotal)+"");
                         }else{
                             Toast.makeText(getApplicationContext(), "Error, cannot get data. Please check your internet", Toast.LENGTH_SHORT).show();
                         }
@@ -98,15 +104,8 @@ public class TotalSpendingActivity extends AppCompatActivity implements View.OnC
 
 
     private String getPrice(double price){
-        DecimalFormat id = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-
-        id.setDecimalFormatSymbols(formatRp);
-
-        return String.format("%s %n", id.format(price));
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        return formatRupiah.format(price);
     }
 }

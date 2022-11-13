@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F7F6F7"
     tools:context=".BookATrip">
 
     <LinearLayout
         android:id="@+id/subTitle"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
         android:background="@color/white"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,29 +21,35 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5dp">
+            android:background="#F7F6F7">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/ic_back"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nexa_regular"
-                android:text="Book A Trip"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                <ImageView
+                    android:id="@+id/buttonBackBookingList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_new_24" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="20dp"
+                    android:fontFamily="@font/nexa_regular"
+                    android:gravity="center"
+                    android:text="Detail Booking"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
@@ -50,9 +58,9 @@
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="245dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         app:cardCornerRadius="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/safe" />
+            android:src="@drawable/bis_background" />
 
     </androidx.cardview.widget.CardView>
 
@@ -75,6 +83,7 @@
         app:cardCornerRadius="5sp"
         app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="@id/background"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/background"
         app:layout_constraintTop_toBottomOf="@id/background">
 
@@ -135,25 +144,7 @@
         app:layout_constraintStart_toEndOf="@id/cardRating"
         app:layout_constraintTop_toBottomOf="@id/background">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/main_color"
-            android:padding="9dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nexa_bold"
-                android:text="lihat foto"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -170,11 +161,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp">
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp">
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardInfo"
+            <LinearLayout
+                android:id="@+id/cardInfoUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -183,116 +175,212 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dateNow">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#E3E3E3"
-
+                    android:background="@drawable/white_bg_rounded"
+                    android:orientation="vertical"
                     android:padding="20dp">
 
                     <TextView
-                        android:id="@+id/kota_pertama"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nexa_bold"
-                        android:text="MEDAN"
-
-                        android:textColor="@color/main_color"
-                        android:textSize="20sp"
+                        android:text="Name"
                         android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:fontFamily="@font/nexa_regular"
+                        android:textColor="@color/main_color"/>
 
                     <TextView
-                        android:id="@+id/jam_berangkat"
+                        android:id="@+id/getUsernameBooking"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="1dp"
-                        android:fontFamily="@font/nexa_bold"
-                        android:text="17:35"
-                        android:textSize="18sp"
+                        android:text="user name"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/nexa_regular"
+                        android:textColor="@color/black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
                         android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/kota_pertama"
-                        app:layout_constraintTop_toBottomOf="@id/kota_pertama" />
-
-                    <TextView
-                        android:id="@+id/kota_kedua"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nexa_bold"
-                        android:text="PEKANBARU"
-
-                        android:textColor="@color/main_color"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/jam_sampai"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="1dp"
-                        android:fontFamily="@font/nexa_bold"
-                        android:text="09:10"
-
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/kota_kedua"
-                        app:layout_constraintTop_toBottomOf="@id/kota_kedua" />
-
-                    <TextView
-                        android:id="@+id/txtDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="20dp"
                         android:fontFamily="@font/nexa_regular"
-                        android:text="Date"
-                        android:textSize="15sp"
-                        app:layout_constraintStart_toStartOf="@+id/jam_berangkat"
-                        app:layout_constraintTop_toBottomOf="@id/jam_berangkat" />
+                        android:textColor="@color/main_color"/>
 
                     <TextView
-                        android:id="@+id/Date"
+                        android:id="@+id/getUserEmailBooking"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="1dp"
+                        android:text="user email"
+                        android:textSize="15dp"
                         android:fontFamily="@font/nexa_regular"
-                        android:text="23 Jul 2019"
-                        android:textSize="15sp"
+                        android:textColor="@color/black"/>
 
-                        app:layout_constraintStart_toStartOf="@id/txtDate"
-                        app:layout_constraintTop_toBottomOf="@id/txtDate" />
+                </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txtBus"
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/cardInfoBooking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="5dp"
+                android:background="@drawable/white_bg_rounded"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardInfoUser">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:fontFamily="@font/nexa_regular"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                        android:text="Bus No."
-                        android:textSize="15sp"
-                        app:layout_constraintEnd_toEndOf="@id/jam_sampai"
-                        app:layout_constraintTop_toBottomOf="@id/jam_sampai" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/platBus"
-                        android:layout_width="wrap_content"
+                            <TextView
+                                android:id="@+id/getFromBooking"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dari"
+                                android:textAllCaps="true"
+                                android:layout_marginBottom="15dp"
+                                android:fontFamily="@font/nexa_regular"
+                                android:textColor="@color/main_color"
+                                android:textStyle="bold"
+                                />
+
+                            <TextView
+                                android:id="@+id/getTimeBooking"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nexa_regular"
+                                android:textColor="@color/black"
+                                android:text="06:50 AM"/>
+
+                            <TextView
+                                android:id="@+id/getDateBooking"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nexa_regular"
+                                android:textColor="@color/black"
+                                android:text="Nov 2, 2022" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height=".6dp"
+                            android:layout_marginLeft="5dp"
+                            android:background="#D3D3D3" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="5dp"
+                                android:src="@drawable/bus"/>
+
+                            <TextView
+                                android:id="@+id/getLongTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:textColor="#D3D3D3"
+                                android:fontFamily="@font/nexa_regular"
+                                android:textStyle="bold"
+                                android:text="Total"/>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height=".6dp"
+                            android:layout_marginRight="5dp"
+                            android:background="#D3D3D3" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/getToBooking"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="tujuan"
+                                android:textAllCaps="true"
+                                android:layout_marginBottom="15dp"
+                                android:fontFamily="@font/nexa_regular"
+                                android:textColor="@color/main_color"
+                                android:textStyle="bold"
+                                />
+
+                            <TextView
+                                android:id="@+id/getTotalTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nexa_regular"
+                                android:textColor="@color/black"
+                                android:text="06:50 AM"/>
+
+                            <TextView
+                                android:id="@+id/getTotalDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nexa_regular"
+                                android:textColor="@color/black"
+                                android:text="Nov 2, 2022"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="1dp"
-                        android:fontFamily="@font/nexa_regular"
-                        android:text="P 1208 NN"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                        android:textSize="15sp"
-                        app:layout_constraintEnd_toEndOf="@id/txtBus"
-                        app:layout_constraintTop_toBottomOf="@id/txtBus" />
+                        <TextView
+                            android:id="@+id/getPriceBooking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rp150.000,00"
+                            android:fontFamily="@font/nexa_regular"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
-            <androidx.cardview.widget.CardView
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:id="@+id/AvailableSeat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -300,14 +388,14 @@
                 app:cardCornerRadius="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardInfo">
+                app:layout_constraintTop_toBottomOf="@id/cardInfoBooking">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/information"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#FFFFFF"
-                    android:padding="20dp">
+                    android:padding="20dp"
+                    android:background="@drawable/white_bg_rounded">
 
                     <TextView
                         android:id="@+id/textView2"
@@ -316,7 +404,6 @@
                         android:fontFamily="@font/nexa_bold"
                         android:text="Available seat"
                         android:textColor="@color/main_color"
-                        android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -327,13 +414,23 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/nexa_regular"
-                        android:text="24 Seat are available"
-                        android:textColor="@color/text_color"
-
-                        android:textSize="17sp"
+                        android:text="This bus have 40 seat and you in seat "
+                        android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="@+id/textView2"
                         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+                    <TextView
+                        android:id="@+id/getBookingSeats"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nexa_regular"
+                        android:text="10C"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/seatAvailable"
+                        app:layout_constraintTop_toTopOf="@+id/seatAvailable"
+                        app:layout_constraintTop_toBottomOf="@id/seatAvailable"
+                        />
 
                     <TextView
                         android:id="@+id/txtClass"
@@ -342,9 +439,7 @@
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/nexa_bold"
                         android:text="Class"
-
                         android:textColor="@color/main_color"
-                        android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@+id/seatAvailable"
                         app:layout_constraintTop_toBottomOf="@id/seatAvailable" />
@@ -356,9 +451,7 @@
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/nexa_regular"
                         android:text="Economy Bus"
-
-                        android:textColor="@color/text_color"
-                        android:textSize="17sp"
+                        android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="@id/txtClass"
                         app:layout_constraintTop_toBottomOf="@id/txtClass" />
 
@@ -369,9 +462,7 @@
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/nexa_bold"
                         android:text="Facility"
-
                         android:textColor="@color/main_color"
-                        android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@+id/seatAvailable"
                         app:layout_constraintTop_toBottomOf="@id/classBus" />
@@ -392,8 +483,7 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/nexa_regular"
                         android:text="Toilet"
-                        android:textColor="@color/text_color"
-                        android:textSize="16dp"
+                        android:textColor="@color/black"
 
                         app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
                         app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
@@ -414,8 +504,7 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/nexa_regular"
                         android:text="Rest Stop"
-                        android:textColor="@color/text_color"
-                        android:textSize="16dp"
+                        android:textColor="@color/black"
                         app:layout_constraintStart_toEndOf="@+id/appCompatImageView1"
                         app:layout_constraintTop_toTopOf="@+id/appCompatImageView1" />
 
@@ -423,56 +512,25 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
-                app:layout_constraintBottom_toTopOf="@+id/cardInfo"
-                app:layout_constraintEnd_toEndOf="@id/cardInfo"
-                app:layout_constraintTop_toTopOf="@+id/cardInfo"
+                app:layout_constraintBottom_toTopOf="@+id/cardInfoUser"
+                app:layout_constraintEnd_toEndOf="@id/cardInfoUser"
+                app:layout_constraintTop_toTopOf="@+id/cardInfoUser"
                 tools:layout_editor_absoluteX="10dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/gold"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+1d"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
             </androidx.cardview.widget.CardView>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/nexa_bold"
-                android:text="PAYMENT"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/AvailableSeat"
-                tools:layout_editor_absoluteX="10dp" />
 
             <TextView
                 android:id="@+id/dateNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/nexa_regular"
-                android:text="Friday, 23 Jul 2019"
-                app:layout_constraintStart_toStartOf="@+id/cardInfo"
+                android:text=""
+                app:layout_constraintStart_toStartOf="@+id/cardInfoUser"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
