@@ -45,6 +45,8 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
     ArrayList<String> to = new ArrayList<>();;
     ArrayList<String> time = new ArrayList<>();;
     ArrayList<String> seat = new ArrayList<>();;
+    ArrayList<String> nameBus = new ArrayList<>();;
+    ArrayList<String> linkBus = new ArrayList<>();;
     ArrayList<Double>  price = new ArrayList<>();;
     ArrayList<String>  totalTime = new ArrayList<>();;
     ArrayList<String>  totalDate = new ArrayList<>();;
@@ -68,7 +70,7 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
 
     private void setAdapter(){
         recyclerView = findViewById(R.id.rvBooking);
-        adapter = new AdapterListBooking(getApplicationContext(), date, from, to, seat, price, time, totalTime, totalDate, longTime);
+        adapter = new AdapterListBooking(getApplicationContext(), date, from, to, seat, nameBus, linkBus, price, time, totalTime, totalDate, longTime);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(BookingActivity.this));
     }
@@ -89,10 +91,14 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                             totalTime.clear();
                             totalDate.clear();
                             longTime.clear();
+                            nameBus.clear();
+                            linkBus.clear();
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 String dataDate = document.getString("date");
                                 String dataFrom = document.getString("from");
                                 String dataTo = document.getString("to");
+                                String dataNameBus = document.getString("nameBus");
+                                String dataLinkBus = document.getString("linkBus");
                                 String dataTime = document.getString("time");
                                 String dataSeat = document.getString("seats");
                                 double dataPrice = Objects.requireNonNull(document.getLong("price"));
@@ -103,6 +109,8 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
                                 from.add(dataFrom);
                                 to.add(dataTo);
                                 seat.add(dataSeat);
+                                nameBus.add(dataNameBus);
+                                linkBus.add(dataLinkBus);
                                 price.add(dataPrice);
                                 time.add(dataTime);
                                 totalTime.add(dataTotalTime);

@@ -51,10 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout buttonSelectDate, buttonSelectedTime;
     TextView selectedDated, selectedTime;
     Calendar calendar;
-    String date, time = "";
+    String date, time, totalTime, totalDate, nameBus, linkBus = "";
     String[] from = { "Bandung", "Yogyakarta", "Solo", "Jakarta", "Surabaya", "Semarang"};
     String[] to = from;
-    String  totalTime, totalDate = "";
     double price = 0;
     int longTime = 0;
 
@@ -207,6 +206,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("longTime", longTime);
         intent.putExtra("totalTime", totalTime);
         intent.putExtra("totalDate", totalDate);
+        intent.putExtra("nameBus", nameBus);
+        intent.putExtra("linkBus", linkBus);
+
         startActivity(intent);
     }
 
@@ -217,48 +219,78 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(from.equals("Solo") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Solo")){
             price = 25000;
             longTime = 2;
+            nameBus = "Sugeng Rahayu";
+            linkBus = "https://drive.google.com/uc?id=1vHiuvPY6mtVtFQbkrd_9beiVTcVKIwlr";
         }else if(from.equals("Solo") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Solo")){
             price = 90000;
             longTime = 4;
+            nameBus = "Sugeng Rahayu";
+            linkBus = "https://drive.google.com/uc?id=1vHiuvPY6mtVtFQbkrd_9beiVTcVKIwlr";
         }else if(from.equals("Surabaya") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Surabaya")){
             price = 150000;
             longTime = 5;
+            nameBus = "Agra Mas";
+            linkBus = "https://drive.google.com/uc?id=1PEpN7Zbmvbc6OVBrATW1Fbj_gwFH4t6p";
         }else if(from.equals("Jakarta") && to.equals("Solo") || from.equals("Solo") && to.equals("Jakarta")){
             price = 165000;
             longTime = 7;
+            nameBus = "Agra Mas";
+            linkBus = "https://drive.google.com/uc?id=1PEpN7Zbmvbc6OVBrATW1Fbj_gwFH4t6p";
         }else if(from.equals("Jakarta") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Jakarta")){
             price = 180000;
             longTime = 8;
+            nameBus = "Eka";
+            linkBus = "https://drive.google.com/uc?id=15iv8VOtgrfoFWgWmvXIiHgkKdv3Yh4oL";
         }else if(from.equals("Jakarta") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Jakarta")){
             price = 250000;
             longTime = 10;
+            nameBus = "Eka";
+            linkBus = "https://drive.google.com/uc?id=15iv8VOtgrfoFWgWmvXIiHgkKdv3Yh4oL";
         }else if(from.equals("Bandung") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Bandung")){
             price = 180000;
             longTime = 10;
+            nameBus = "Harapan Jaya";
+            linkBus = "https://drive.google.com/uc?id=1ouQF4iSvKgR7lYKmMO7XApicwi3pLTMS";
         }else if(from.equals("Bandung") && to.equals("Jakarta") || from.equals("Jakarta") && to.equals("Bandung")){
             price = 80000;
             longTime = 3;
+            nameBus = "Harapan Jaya";
+            linkBus = "https://drive.google.com/uc?id=1ouQF4iSvKgR7lYKmMO7XApicwi3pLTMS";
         }else if(from.equals("Bandung") && to.equals("Solo") || from.equals("Solo") && to.equals("Bandung")){
             price = 165000;
             longTime = 9;
+            nameBus = "Po Haryanto";
+            linkBus = "https://drive.google.com/uc?id=1tP4doVWiiRR9faI9UO2t3NRq-TBrLl0n";
         }else if(from.equals("Bandung") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Bandung")){
             price = 275000;
             longTime = 9;
+            nameBus = "Po Haryanto";
+            linkBus = "https://drive.google.com/uc?id=1tP4doVWiiRR9faI9UO2t3NRq-TBrLl0n";
         }else if(from.equals("Bandung") && to.equals("Semarang") || from.equals("Semarang") && to.equals("Bandung")){
             price = 220000;
             longTime = 7;
+            nameBus = "Sinar Jaya";
+            linkBus = "https://drive.google.com/uc?id=1hEyLwnK9zmJ_vW6q5FuxQQ2KX9LqGy5b";
         }else if(from.equals("Jakarta") && to.equals("Semarang") || from.equals("Semarang") && to.equals("Jakarta")){
             price = 250000;
             longTime = 9;
+            nameBus = "Sinar Jaya";
+            linkBus = "https://drive.google.com/uc?id=1hEyLwnK9zmJ_vW6q5FuxQQ2KX9LqGy5b";
         }else if(from.equals("Semarang") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Semarang")){
             price = 65000;
             longTime = 3;
+            nameBus = "Sinar Jaya";
+            linkBus = "https://drive.google.com/uc?id=1hEyLwnK9zmJ_vW6q5FuxQQ2KX9LqGy5b";
         }else if(from.equals("Semarang") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Semarang")){
             price = 130000;
             longTime = 9;
+            nameBus = "Widji Lestari";
+            linkBus = "https://drive.google.com/uc?id=1HeQUyQurfqDv65aRu-9pllJioOcX6Zoh";
         }else if(from.equals("Solo") && to.equals("Semarang") || from.equals("Semarang") && to.equals("Solo")){
             price = 70000;
             longTime = 4;
+            nameBus = "Sinar Jaya";
+            linkBus = "https://drive.google.com/uc?id=1hEyLwnK9zmJ_vW6q5FuxQQ2KX9LqGy5b";
         }
     }
 

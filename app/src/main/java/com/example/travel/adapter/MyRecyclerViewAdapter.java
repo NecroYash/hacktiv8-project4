@@ -63,7 +63,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                 Log.i("show", checkSeats.toString());
                 for(int y = 0; y < checkSeats.size(); y++){
                     if(Integer.parseInt(checkSeats.get(y)) == position){
-
                         holder.myTextView.setBackgroundResource(R.drawable.ic_close);
                         holder.myTextView.setText("");
                     }
@@ -111,7 +110,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Message").setMessage("Are you sure you select this seat? you cannot change your seat after this.").setCancelable(false).setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
             lastIndex = 10;
-            dataSeat = " " + position + mData[position];
+            dataSeat = " " + (position+1) + mData[position];
             pos = String.valueOf(position);
             Intent intent = new Intent(context, SeatsActivity.class);
             intent.putExtra("data", dataSeat);

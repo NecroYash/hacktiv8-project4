@@ -50,7 +50,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     Button buttonContinueDetail;
     ImageView buttonBackSeats;
     Calendar calendar;
-    String name, email, from, to, date, time, seats, totalTime, totalDate, uid;
+    String name, email, from, to, date, time, seats, totalTime, totalDate, uid, nameBus, linkBus;
     int longTime;
     Double price;
     String pos;
@@ -106,6 +106,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         item.put("position", pos);
         item.put("totalTime", totalTime);
         item.put("totalDate", totalDate);
+        item.put("nameBus", nameBus);
+        item.put("linkBus", linkBus);
 
         db.collection("booking")
                 .add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -135,6 +137,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         data.putInt("longTime", longTime);
         data.putString("totalTime", totalTime);
         data.putString("totalDate", totalDate);
+        data.putString("nameBus", nameBus);
+        data.putString("linkBus", linkBus);
 
         data.apply();
     }
@@ -153,6 +157,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         longTime = sharedPreferences.getInt("longTime", 0);
         totalTime = sharedPreferences.getString("totalTime", "");
         totalDate = sharedPreferences.getString("totalDate", "");
+        nameBus = sharedPreferences.getString("nameBus", "");
+        linkBus = sharedPreferences.getString("linkBus", "");
         pos = getIntent().getStringExtra("pos");
     }
 
@@ -163,7 +169,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         recyclerView.setAdapter(adapter);
     }
 
-    private void getData(){
+    private void getData(String from, String to){
         seatsLoading.setVisibility(View.VISIBLE);
 
         db.collection("booking")
@@ -173,9 +179,15 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
+//                            checkSeats.clear();
+                            Log.i("show", checkSeats.toString());
                             for (QueryDocumentSnapshot document : task.getResult()){
-                                String seats = document.getString("position");
-                                checkSeats.add(seats);
+                                if(document.getString("from").equals(from) && document.getString("to").equals(to) || document.getString("from").equals(to) && document.getString("to").equals(from)){
+
+                                    String seats = document.getString("position");
+                                    Log.i("iniSeats", seats);
+                                    checkSeats.add(seats);
+                                }
                             }
 
                             seatsLoading.setVisibility(View.GONE);
@@ -211,6 +223,8 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("totalDateBooking", totalDate);
                 intent.putExtra("longTime", longTime);
                 intent.putExtra("priceBooking", getPrice(price));
+                intent.putExtra("nameBus", nameBus);
+                intent.putExtra("linkBus", linkBus);
                 intent.putExtra("context", "notList");
                 startActivity(intent);
                 MyRecyclerViewAdapter.dataSeat = null;
@@ -221,7 +235,6 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
-        getData();
 
         if(MyRecyclerViewAdapter.dataSeat == null || name == null){
             MyRecyclerViewAdapter.lastIndex = 0;
@@ -236,11 +249,17 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
             longTime = getIntent().getIntExtra("longTime", 0);
             totalTime = getIntent().getStringExtra("totalTime");
             totalDate = getIntent().getStringExtra("totalDate");
+            nameBus = getIntent().getStringExtra("nameBus");
+            linkBus = getIntent().getStringExtra("linkBus");
+
 
             getPrice.setText(getPrice(price));
             saveDataOnrestart();
 
         }
+        getData(from, to);
+
+
 
     }
 

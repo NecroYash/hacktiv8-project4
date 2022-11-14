@@ -28,17 +28,19 @@ import java.util.Locale;
 public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.ViewHolder> {
 
     Context context;
-    ArrayList<String> date, from, to, seat, time, totalTime, totalDate;
+    ArrayList<String> date, from, to, nameBus, linkBus, seat, time, totalTime, totalDate;
     ArrayList<Double> price;
     ArrayList<Integer> longTime;
     private LayoutInflater mInflater;
 
-    public AdapterListBooking(Context context, ArrayList<String> date, ArrayList<String> from, ArrayList<String> to, ArrayList<String> seat, ArrayList<Double> price, ArrayList<String> time, ArrayList<String> totalTime, ArrayList<String> totalDate, ArrayList<Integer> longTime) {
+    public AdapterListBooking(Context context, ArrayList<String> date, ArrayList<String> from, ArrayList<String> to, ArrayList<String> seat, ArrayList<String> nameBus , ArrayList<String> linkBus, ArrayList<Double> price, ArrayList<String> time, ArrayList<String> totalTime, ArrayList<String> totalDate, ArrayList<Integer> longTime) {
         this.context = context;
         this.date = date;
         this.from = from;
         this.to = to;
         this.seat = seat;
+        this.nameBus = nameBus;
+        this.linkBus = linkBus;
         this.price = price;
         this.mInflater = LayoutInflater.from(context);
         this.time = time;
@@ -62,6 +64,7 @@ public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.
         holder.fromBooking.setText(from.get(position));
         holder.toBooking.setText(to.get(position));
         holder.seatBooking.setText(seat.get(position));
+        holder.nameBus.setText(nameBus.get(position));
         holder.priceBooking.setText(getPrice(price.get(position))+"");
         holder.timeBooking.setText(time.get(position));
         holder.totalTimeBooking.setText(totalTime.get(position));
@@ -82,7 +85,7 @@ public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ConstraintLayout rowBooking;
-        TextView dateBooking, fromBooking, toBooking,  seatBooking, priceBooking, timeBooking, totalTimeBooking, totalDateBooking, longTime;
+        TextView dateBooking, fromBooking, toBooking,  seatBooking, priceBooking, timeBooking, totalTimeBooking, totalDateBooking, longTime, nameBus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,6 +93,7 @@ public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.
             fromBooking = itemView.findViewById(R.id.fromBookingList);
             toBooking = itemView.findViewById(R.id.toBookingList);
             seatBooking = itemView.findViewById(R.id.seatBookingList);
+            nameBus = itemView.findViewById(R.id.nameBusBookingList);
             priceBooking = itemView.findViewById(R.id.priceBookingList);
 
             timeBooking = itemView.findViewById(R.id.timeBookingList);
@@ -104,10 +108,13 @@ public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.
                 public void onClick(View view) {
                     Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, BookATrip.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("dateBooking", dateBooking.getText().toString());
                     intent.putExtra("fromBooking", fromBooking.getText().toString());
                     intent.putExtra("toBooking", toBooking.getText().toString());
                     intent.putExtra("seatBooking", seatBooking.getText().toString());
+                    intent.putExtra("nameBus", nameBus.getText().toString());
+                    intent.putExtra("linkBus", linkBus.get(getAdapterPosition()));
                     intent.putExtra("timeBooking", timeBooking.getText().toString());
                     intent.putExtra("totalTimeBooking", totalTimeBooking.getText().toString());
                     intent.putExtra("totalDateBooking", totalDateBooking.getText().toString());
