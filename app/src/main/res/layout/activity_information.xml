@@ -68,12 +68,14 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_marginTop="24dp">
+
             <ImageView
                 android:id="@+id/wa_khalivio"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:onClick="whatsapp"
-                app:srcCompat="@drawable/male_avatar"/>
+                app:srcCompat="@drawable/male_avatar" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -95,7 +97,7 @@
                         android:id="@+id/gitVio"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
-                        app:srcCompat="@drawable/github"
+                        app:srcCompat="@drawable/github64px"
                         android:onClick="github"/>
                     <TextView
                         android:layout_width="match_parent"
@@ -142,7 +144,7 @@
                         android:id="@+id/gitDanu"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
-                        app:srcCompat="@drawable/github"
+                        app:srcCompat="@drawable/github64px"
                         android:onClick="github"/>
                     <TextView
                         android:layout_width="match_parent"
@@ -189,7 +191,7 @@
                         android:id="@+id/gitLucky"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
-                        app:srcCompat="@drawable/github"
+                        app:srcCompat="@drawable/github64px"
                         android:onClick="github"/>
                     <TextView
                         android:layout_width="match_parent"
