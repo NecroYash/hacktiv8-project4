@@ -29,6 +29,7 @@ public class BookATrip extends AppCompatActivity implements View.OnClickListener
     TextView getUsername, getUserEmail, getFrom, getTo, getTime, getDate, getTotalTime, getTotalDate, getTotalSeats, getLongTime, getPrice, getBusName;
     ProgressBar loadingImageBus;
     String context, linkBus;
+    Button buttonToTicket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +51,10 @@ public class BookATrip extends AppCompatActivity implements View.OnClickListener
         getLongTime = (TextView) findViewById(R.id.getLongTime);
         getPrice = (TextView) findViewById(R.id.getPriceBooking);
         loadingImageBus = (ProgressBar) findViewById(R.id.imageLoadingDetailBooking);
+        buttonToTicket = (Button) findViewById(R.id.toTicketActivity);
 
         buttonBack.setOnClickListener(this);
+        buttonToTicket.setOnClickListener(this);
     }
 
     private void getDataBooking(){
@@ -82,7 +85,21 @@ public class BookATrip extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-       onBackPressed();
+       switch (view.getId()){
+           case R.id.buttonBackBookingList:
+               onBackPressed();
+               break;
+           case R.id.toTicketActivity:
+               Intent intent = new Intent(BookATrip.this, TicketActivity.class);
+               intent.putExtra("fromBooking", getFrom.getText());
+               intent.putExtra("nameBus", getBusName.getText());
+               intent.putExtra("toBooking", getTo.getText());
+               intent.putExtra("timeBooking", getTime.getText());
+               intent.putExtra("dateBooking", getDate.getText());
+               intent.putExtra("longTime", getLongTime.getText());
+               intent.putExtra("priceBooking", getPrice.getText());
+               startActivity(intent);
+       }
     }
 
     @Override
@@ -118,6 +135,5 @@ public class BookATrip extends AppCompatActivity implements View.OnClickListener
                 })
                 .error(R.drawable.ic_launcher_background)
                 .into(busImage);
-//
     }
 }

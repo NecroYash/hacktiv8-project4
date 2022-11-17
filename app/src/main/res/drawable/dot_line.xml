@@ -2,7 +2,7 @@
     <solid android:color="@android:color/transparent"/>
     <stroke
         android:width="1px"
-        android:color="@color/main_color"
+        android:color="#F7F6F7"
         android:dashGap="5px"
         android:dashWidth="5px" />
 </shape>

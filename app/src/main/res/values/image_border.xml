@@ -9,4 +9,27 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">40dp</item>
     </style>
+
+    <style name="circleTicket" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">25dp</item>
+    </style>
+
+    <style name="circleTicketDoted" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">3.5dp</item>
+    </style>
+
+    <style name="circleTicketSideLeft" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">7.5dp</item>
+        <item name="cornerSizeBottomRight">7.5dp</item>
+    </style>
+
+
+    <style name="circleTicketSideRight" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">7.5dp</item>
+        <item name="cornerSizeBottomLeft">7.5dp</item>
+    </style>
 </resources>
