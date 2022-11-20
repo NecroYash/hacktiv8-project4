@@ -37,11 +37,12 @@
             />
 
         <ImageView
-            android:id="@+id/generatePdf"
+            android:id="@+id/downloadTicketButton"
             android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:background="@drawable/outlined_white_button"
             android:paddingHorizontal="2dp"
+            android:onClick="createPdfFromView"
             android:paddingVertical="5dp"
             android:src="@drawable/ic_baseline_file_download_24" />
     </LinearLayout>
