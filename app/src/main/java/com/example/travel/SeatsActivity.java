@@ -221,11 +221,12 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("timeBooking", time);
                 intent.putExtra("totalTimeBooking", totalTime);
                 intent.putExtra("totalDateBooking", totalDate);
-                intent.putExtra("longTime", longTime);
+                intent.putExtra("longTime", String.valueOf(longTime)+"H");
                 intent.putExtra("priceBooking", getPrice(price));
                 intent.putExtra("nameBus", nameBus);
                 intent.putExtra("linkBus", linkBus);
                 intent.putExtra("context", "notList");
+                Log.i("totalTime", totalTime);
                 startActivity(intent);
                 MyRecyclerViewAdapter.dataSeat = null;
                 break;

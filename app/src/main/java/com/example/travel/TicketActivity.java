@@ -40,13 +40,8 @@ import java.io.IOException;
 
 public class TicketActivity extends AppCompatActivity{
 
-    ImageView generateTicket;
     TextView fromTicket, toTicket, busTicket, timeTicket, dateTicket, longTicket, priceTicket;
 
-    private static final int PERMISSION_REQUEST_CODE = 10;
-    private static final String TAG = "Tripy.com";
-    int pdfHeight = 1000;
-    int pdfWidth = 720;
     private PdfDocument document;
     private static final int CREATE_FILE = 1;
 

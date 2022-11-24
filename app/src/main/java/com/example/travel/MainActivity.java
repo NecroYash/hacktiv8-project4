@@ -194,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         checkPriceAndTime();
         getTimeDate(date, time, longTime);
+        Log.i("totalTime", String.valueOf(longTime));
         Intent intent = new Intent(MainActivity.this, SeatsActivity.class);
         intent.putExtra("uid", auth.getCurrentUser().getUid());
         intent.putExtra("name", auth.getCurrentUser().getDisplayName());

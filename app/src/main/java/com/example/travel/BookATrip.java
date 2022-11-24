@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.DocumentsContract;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -108,6 +109,8 @@ public class BookATrip extends AppCompatActivity implements View.OnClickListener
         linkBus = getIntent().getStringExtra("linkBus");
 
         getImageUser();
+
+        Log.i("longTime", getLongTime.toString());
     }
 
     @Override
