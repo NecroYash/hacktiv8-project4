@@ -91,37 +91,37 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public void addBooking(){
-        Map<String, Object> item = new HashMap<>();
-        item.put("uid", uid);
-        item.put("name", name);
-        item.put("email", email);
-        item.put("from", from);
-        item.put("to", to);
-        item.put("date", date);
-        item.put("time", time);
-        item.put("price", price);
-        item.put("longTime", longTime);
-        item.put("seats", seats);
-        item.put("position", pos);
-        item.put("totalTime", totalTime);
-        item.put("totalDate", totalDate);
-        item.put("nameBus", nameBus);
-        item.put("linkBus", linkBus);
-
-        db.collection("booking")
-                .add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(SeatsActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                    }
-                }). addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(SeatsActivity.this, "Failure", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
+//    public void addBooking(){
+//        Map<String, Object> item = new HashMap<>();
+//        item.put("uid", uid);
+//        item.put("name", name);
+//        item.put("email", email);
+//        item.put("from", from);
+//        item.put("to", to);
+//        item.put("date", date);
+//        item.put("time", time);
+//        item.put("price", price);
+//        item.put("longTime", longTime);
+//        item.put("seats", seats);
+//        item.put("position", pos);
+//        item.put("totalTime", totalTime);
+//        item.put("totalDate", totalDate);
+//        item.put("nameBus", nameBus);
+//        item.put("linkBus", linkBus);
+//
+//        db.collection("booking")
+//                .add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+//                        Toast.makeText(SeatsActivity.this, "Success", Toast.LENGTH_SHORT).show();
+//                    }
+//                }). addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(SeatsActivity.this, "Failure", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
 
     private void saveDataOnrestart(){
         SharedPreferences sharedPreferences = getSharedPreferences("save", 0);
@@ -211,22 +211,23 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(SeatsActivity.this, "Please select your seats", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                addBooking();
-                Intent intent = new Intent(SeatsActivity.this, BookATrip.class);
-
-                intent.putExtra("dateBooking", date);
-                intent.putExtra("fromBooking", from);
-                intent.putExtra("toBooking", to);
-                intent.putExtra("seatBooking", seats);
-                intent.putExtra("timeBooking", time);
-                intent.putExtra("totalTimeBooking", totalTime);
-                intent.putExtra("totalDateBooking", totalDate);
-                intent.putExtra("longTime", String.valueOf(longTime)+"H");
-                intent.putExtra("priceBooking", getPrice(price));
-                intent.putExtra("nameBus", nameBus);
-                intent.putExtra("linkBus", linkBus);
-                intent.putExtra("context", "notList");
-                Log.i("totalTime", totalTime);
+//                addBooking();
+//                Intent intent = new Intent(SeatsActivity.this, BookATrip.class);
+//                intent.putExtra("dateBooking", date);
+//                intent.putExtra("fromBooking", from);
+//                intent.putExtra("toBooking", to);
+//                intent.putExtra("seatBooking", seats);
+//                intent.putExtra("timeBooking", time);
+//                intent.putExtra("totalTimeBooking", totalTime);
+//                intent.putExtra("totalDateBooking", totalDate);
+//                intent.putExtra("longTime", String.valueOf(longTime)+"H");
+//                intent.putExtra("priceBooking", getPrice(price));
+//                intent.putExtra("nameBus", nameBus);
+//                intent.putExtra("linkBus", linkBus);
+//                intent.putExtra("context", "notList");
+//                Log.i("totalTime", totalTime);
+//                startActivity(intent);
+                Intent intent = new Intent(SeatsActivity.this, DetailPayment.class);
                 startActivity(intent);
                 MyRecyclerViewAdapter.dataSeat = null;
                 break;
@@ -239,9 +240,9 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
 
         if(MyRecyclerViewAdapter.dataSeat == null || name == null){
             MyRecyclerViewAdapter.lastIndex = 0;
-            uid = getIntent().getStringExtra("uid");
-            name = getIntent().getStringExtra("name");
-            email = getIntent().getStringExtra("email");
+            uid = auth.getUid();
+            name = auth.getCurrentUser().getDisplayName();
+            email = auth.getCurrentUser().getEmail();
             from = getIntent().getStringExtra("from");
             to = getIntent().getStringExtra("to");
             date = getIntent().getStringExtra("date");
@@ -253,17 +254,12 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
             nameBus = getIntent().getStringExtra("nameBus");
             linkBus = getIntent().getStringExtra("linkBus");
 
-
             getPrice.setText(getPrice(price));
             saveDataOnrestart();
 
         }
         getData(from, to);
-
-
-
     }
-
 
     @Override
     public void onBackPressed() {

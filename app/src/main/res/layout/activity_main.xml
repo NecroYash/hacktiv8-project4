@@ -83,7 +83,7 @@
                     android:layout_gravity="center"
                     android:layout_width="1dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/dot_line" />
+                    android:background="@drawable/dot_line_black" />
             </LinearLayout>
 
             <LinearLayout
@@ -128,7 +128,7 @@
                     android:layout_width="1dp"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/dot_line" />
+                    android:background="@drawable/dot_line_black" />
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="20dp"
@@ -168,32 +168,6 @@
             android:layout_marginTop="20dp"
 
             android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/linearButtonTime"
-                android:layout_width="wrap_content"
-                android:background="@drawable/outlined_white_button"
-                android:padding="15dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_access_time_24" />
-
-                <TextView
-                    android:id="@+id/selectTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/nexa_regular"
-                    android:text="Time"
-                    android:layout_marginRight="3dp"
-                    android:textColor="@color/black" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearButtonDate"
