@@ -93,7 +93,6 @@ public class BusActivity extends AppCompatActivity {
         Log.i("infoData", "Awal = " + date + " " + time + " " + longTime);
         SimpleDateFormat formatter= new SimpleDateFormat(pola);
         String check = date + " " + time;
-//        String check = date + " " + time;
         try {
             dateTime = formatter.parse(check);
         } catch (ParseException ex) {

@@ -183,10 +183,11 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                             Log.i("show", checkSeats.toString());
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 if(document.getString("from").equals(from) && document.getString("to").equals(to) || document.getString("from").equals(to) && document.getString("to").equals(from)){
-
-                                    String seats = document.getString("position");
-                                    Log.i("iniSeats", seats);
-                                    checkSeats.add(seats);
+                                    if(document.getString("nameBus").equals(nameBus) && document.getString("time").equals(time) ){
+                                        String seats = document.getString("position");
+                                        Log.i("iniSeats", seats);
+                                        checkSeats.add(seats);
+                                    }
                                 }
                             }
 
@@ -228,6 +229,23 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
 //                Log.i("totalTime", totalTime);
 //                startActivity(intent);
                 Intent intent = new Intent(SeatsActivity.this, DetailPayment.class);
+
+                intent.putExtra("uid", uid);
+                intent.putExtra("name", name);
+                intent.putExtra("email", email);
+                intent.putExtra("date", date);
+                intent.putExtra("from", from);
+                intent.putExtra("to", to);
+                intent.putExtra("seats", seats);
+                intent.putExtra("time", time);
+                intent.putExtra("totalTime", totalTime);
+                intent.putExtra("totalDate", totalDate);
+                intent.putExtra("longTime", longTime);
+                intent.putExtra("position", pos);
+                intent.putExtra("price", price);
+                intent.putExtra("nameBus", nameBus);
+                intent.putExtra("linkBus", linkBus);
+                Log.i("checkPrice", getPrice(price));
                 startActivity(intent);
                 MyRecyclerViewAdapter.dataSeat = null;
                 break;

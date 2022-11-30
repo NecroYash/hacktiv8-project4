@@ -106,7 +106,7 @@ public class AdapterListBus extends RecyclerView.Adapter<AdapterListBus.ViewHold
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, SeatsActivity.class);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("from", from.get(getAdapterPosition()));
                     intent.putExtra("to", to.get(getAdapterPosition()));
                     intent.putExtra("date", listDate.get(getAdapterPosition()));

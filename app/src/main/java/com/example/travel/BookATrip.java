@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,8 +55,6 @@ public class BookATrip extends AppCompatActivity implements View.OnClickListener
     ProgressBar loadingImageBus;
     String context, linkBus;
     Button buttonToTicket;
-
-
 
     private static final int PERMISSION_REQUEST_CODE = 10;
     private static final String TAG = "Tripy.com";
@@ -126,7 +125,10 @@ public class BookATrip extends AppCompatActivity implements View.OnClickListener
                onBackPressed();
                break;
            case R.id.toTicketActivity:
+               Toast.makeText(this, "check", Toast.LENGTH_SHORT).show();
                if(checkPermission()){
+                   Toast.makeText(this, "checkPermission", Toast.LENGTH_SHORT).show();
+
 //                   createPdfFromView();
                    Intent intent = new Intent(BookATrip.this, TicketActivity.class);
                    intent.putExtra("fromBooking", getFrom.getText());
@@ -138,6 +140,7 @@ public class BookATrip extends AppCompatActivity implements View.OnClickListener
                    intent.putExtra("priceBooking", getPrice.getText());
                    startActivity(intent);
                }else{
+                   Toast.makeText(this, "reques", Toast.LENGTH_SHORT).show();
                    requestPermission();
                }
        }

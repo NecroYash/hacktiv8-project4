@@ -270,7 +270,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/outlined_button"
             android:fontFamily="@font/nexa_bold"
-            android:text="Continue to detail"
+            android:text="Continue to payment"
             android:layout_marginBottom="20dp"
             android:textAllCaps="false" />
 
