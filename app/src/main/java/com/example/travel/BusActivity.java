@@ -93,6 +93,7 @@ public class BusActivity extends AppCompatActivity {
         Log.i("infoData", "Awal = " + date + " " + time + " " + longTime);
         SimpleDateFormat formatter= new SimpleDateFormat(pola);
         String check = date + " " + time;
+//        String check = date + " " + time;
         try {
             dateTime = formatter.parse(check);
         } catch (ParseException ex) {
@@ -104,13 +105,15 @@ public class BusActivity extends AppCompatActivity {
 
         showTimeDate = formatter.format(calendar.getTime());
 
-        if(showTimeDate.length() == longTime){
+        if(showTimeDate.length() == 17){
             totalDate = showTimeDate.substring(0, 11);
             totalTime = showTimeDate.substring(12, 17);
+            Log.i("infoString", "Check = " + showTimeDate );
             Log.i("infoData", "Hasil = " + totalDate + " " + totalTime);
         }else{
             totalDate = showTimeDate.substring(0, 12);
             totalTime = showTimeDate.substring(13, 18);
+            Log.i("infoString", "Check = " + showTimeDate );
             Log.i("infoData", "Hasil = " + totalDate + " " + totalTime);
         }
     }
@@ -142,27 +145,29 @@ public class BusActivity extends AppCompatActivity {
                             listTotalTime.clear();
                             linkBus.clear();
                             for (QueryDocumentSnapshot document : task.getResult()){
-                                String dataFrom = document.getString("from");
-                                String dataTo = document.getString("to");
-                                String dataNameBus = document.getString("nameBus");
-                                String dataTime = document.getString("time");
-                                String dataLinkBus = document.getString("linkBus");
-                                double dataPrice = Objects.requireNonNull(document.getLong("price"));
-                                int dataLongTime = Objects.requireNonNull(document.getLong("longTime")).intValue();
+                                if(Objects.equals(document.getString("from"), from) && Objects.equals(document.getString("to"), to)){
+                                    String dataFrom = document.getString("from");
+                                    String dataTo = document.getString("to");
+                                    String dataNameBus = document.getString("nameBus");
+                                    String dataTime = document.getString("time");
+                                    String dataLinkBus = document.getString("linkBus");
+                                    double dataPrice = Objects.requireNonNull(document.getLong("price"));
+                                    int dataLongTime = Objects.requireNonNull(document.getLong("longTime")).intValue();
 
-                                getTimeDate(date, dataTime, dataLongTime);
+                                    getTimeDate(date, dataTime, dataLongTime);
 
-                                listDate.add(date);
-                                listFrom.add(dataFrom);
-                                listTo.add(dataTo);
-                                nameBus.add(dataNameBus);
-                                price.add(dataPrice);
-                                time.add(dataTime);
-                                longTime.add(dataLongTime);
-                                linkBus.add(dataLinkBus);
+                                    listDate.add(date);
+                                    listFrom.add(dataFrom);
+                                    listTo.add(dataTo);
+                                    nameBus.add(dataNameBus);
+                                    price.add(dataPrice);
+                                    time.add(dataTime);
+                                    longTime.add(dataLongTime);
+                                    linkBus.add(dataLinkBus);
 
-                                listTotalTime.add(totalTime);
-                                listTotalDate.add(totalDate);
+                                    listTotalTime.add(totalTime);
+                                    listTotalDate.add(totalDate);
+                                }
                             }
                             loadingBus.setVisibility(View.GONE);
                             setAdapter();

@@ -51,9 +51,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout buttonSelectDate;
     TextView selectedDated;
     Calendar calendar;
-    String date = "";
+    String date, nameBus, linkBus = "";
     String[] from = { "Bandung", "Yogyakarta", "Solo", "Jakarta", "Surabaya", "Semarang"};
     String[] to = from;
+    int price, longTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,8 +188,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 //        checkPriceAndTime();
-//        getTimeDate(date, time, longTime);
-//        Log.i("totalTime", String.valueOf(longTime));
+//        Intent intent = new Intent(MainActivity.this, InputBusDataActivity.class);
+//        intent.putExtra("from", dropdownFrom.getSelectedItem().toString());
+//        intent.putExtra("to", dropdownTo.getSelectedItem().toString());
+//        intent.putExtra("price", price);
+//        intent.putExtra("longTime", longTime);
+//        startActivity(intent);
+
+
         Intent intent = new Intent(MainActivity.this, BusActivity.class);
         intent.putExtra("from", dropdownFrom.getSelectedItem().toString());
         intent.putExtra("to", dropdownTo.getSelectedItem().toString());
@@ -196,10 +203,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-//    private void checkPriceAndTime(){
-//        String from = dropdownFrom.getSelectedItem().toString();
-//        String to = dropdownTo.getSelectedItem().toString();
-//
+    private void checkPriceAndTime(){
+        String from = dropdownFrom.getSelectedItem().toString();
+        String to = dropdownTo.getSelectedItem().toString();
+
 //        if(from.equals("Solo") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Solo")){
 //            price = 25000;
 //            longTime = 2;
@@ -276,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            nameBus = "Sinar Jaya";
 //            linkBus = "https://drive.google.com/uc?id=1hEyLwnK9zmJ_vW6q5FuxQQ2KX9LqGy5b";
 //        }
-//    }
+    }
 
 
 //    @SuppressLint("SimpleDateFormat")
