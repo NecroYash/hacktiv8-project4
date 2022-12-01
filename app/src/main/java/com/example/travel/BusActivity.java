@@ -53,7 +53,7 @@ public class BusActivity extends AppCompatActivity {
     ArrayList<String>  listTotalDate = new ArrayList<>();
     ArrayList<Integer>  longTime = new ArrayList<>();
 
-    String totalDate, totalTime, name, email, uid;
+    String totalDate, totalTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

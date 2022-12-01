@@ -51,10 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout buttonSelectDate;
     TextView selectedDated;
     Calendar calendar;
-    String date, nameBus, linkBus = "";
+    String date = "";
     String[] from = { "Bandung", "Yogyakarta", "Solo", "Jakarta", "Surabaya", "Semarang"};
     String[] to = from;
-    int price, longTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,35 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dropdownFrom.setAdapter(adapterFrom);
         dropdownTo.setAdapter(adapterTo);
     }
-
-//    private void selectTime(){
-//        final Calendar c = Calendar.getInstance();
-//
-//        int hour = c.get(Calendar.HOUR_OF_DAY);
-//        int minute = c.get(Calendar.MINUTE);
-//
-//        buttonSelectedTime.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this,
-//                        new TimePickerDialog.OnTimeSetListener() {
-//                            @RequiresApi(api = Build.VERSION_CODES.O)
-//                            @Override
-//                            public void onTimeSet(TimePicker view, int hourOfDay,
-//                                                  int minute) {
-//
-//                                String hrstr = hourOfDay < 10 ? '0' + String.valueOf(hourOfDay) : String.valueOf(hourOfDay);
-//                                String minstr = minute < 10 ? '0' + String.valueOf(minute) : String.valueOf(minute);
-//                                time = hrstr + ":" + minstr ;
-//                                selectedTime.setText(time);
-//                            }
-//                        }, hour, minute, true);
-//                timePickerDialog.show();
-//            }
-//        });
-//
-//    }
-
 
     private void selectDate(){
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
@@ -175,26 +145,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-
-
     @Override
     public void onClick(View view) {
 
         if(dropdownFrom.getSelectedItem().toString().equals(dropdownTo.getSelectedItem().toString())){
             Toast.makeText(MainActivity.this, "Cannot same place", Toast.LENGTH_SHORT).show();
             return;
-        }else if(date == null){
+        }else if(date == null || selectedDated.getText().equals("Date")){
             Toast.makeText(MainActivity.this, "Please select your date", Toast.LENGTH_SHORT).show();
             return;
         }
-//        checkPriceAndTime();
-//        Intent intent = new Intent(MainActivity.this, InputBusDataActivity.class);
-//        intent.putExtra("from", dropdownFrom.getSelectedItem().toString());
-//        intent.putExtra("to", dropdownTo.getSelectedItem().toString());
-//        intent.putExtra("price", price);
-//        intent.putExtra("longTime", longTime);
-//        startActivity(intent);
-
 
         Intent intent = new Intent(MainActivity.this, BusActivity.class);
         intent.putExtra("from", dropdownFrom.getSelectedItem().toString());
@@ -202,114 +162,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("date", date);
         startActivity(intent);
     }
-
-    private void checkPriceAndTime(){
-        String from = dropdownFrom.getSelectedItem().toString();
-        String to = dropdownTo.getSelectedItem().toString();
-
-//        if(from.equals("Solo") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Solo")){
-//            price = 25000;
-//            longTime = 2;
-//            nameBus = "Sugeng Rahayu";
-//            linkBus = "https://drive.google.com/uc?id=1vHiuvPY6mtVtFQbkrd_9beiVTcVKIwlr";
-//        }else if(from.equals("Solo") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Solo")){
-//            price = 90000;
-//            longTime = 4;
-//            nameBus = "Sugeng Rahayu";
-//            linkBus = "https://drive.google.com/uc?id=1vHiuvPY6mtVtFQbkrd_9beiVTcVKIwlr";
-//        }else if(from.equals("Surabaya") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Surabaya")){
-//            price = 150000;
-//            longTime = 5;
-//            nameBus = "Agra Mas";
-//            linkBus = "https://drive.google.com/uc?id=1PEpN7Zbmvbc6OVBrATW1Fbj_gwFH4t6p";
-//        }else if(from.equals("Jakarta") && to.equals("Solo") || from.equals("Solo") && to.equals("Jakarta")){
-//            price = 165000;
-//            longTime = 7;
-//            nameBus = "Agra Mas";
-//            linkBus = "https://drive.google.com/uc?id=1PEpN7Zbmvbc6OVBrATW1Fbj_gwFH4t6p";
-//        }else if(from.equals("Jakarta") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Jakarta")){
-//            price = 180000;
-//            longTime = 8;
-//            nameBus = "Eka";
-//            linkBus = "https://drive.google.com/uc?id=15iv8VOtgrfoFWgWmvXIiHgkKdv3Yh4oL";
-//        }else if(from.equals("Jakarta") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Jakarta")){
-//            price = 250000;
-//            longTime = 10;
-//            nameBus = "Eka";
-//            linkBus = "https://drive.google.com/uc?id=15iv8VOtgrfoFWgWmvXIiHgkKdv3Yh4oL";
-//        }else if(from.equals("Bandung") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Bandung")){
-//            price = 180000;
-//            longTime = 10;
-//            nameBus = "Harapan Jaya";
-//            linkBus = "https://drive.google.com/uc?id=1ouQF4iSvKgR7lYKmMO7XApicwi3pLTMS";
-//        }else if(from.equals("Bandung") && to.equals("Jakarta") || from.equals("Jakarta") && to.equals("Bandung")){
-//            price = 80000;
-//            longTime = 3;
-//            nameBus = "Harapan Jaya";
-//            linkBus = "https://drive.google.com/uc?id=1ouQF4iSvKgR7lYKmMO7XApicwi3pLTMS";
-//        }else if(from.equals("Bandung") && to.equals("Solo") || from.equals("Solo") && to.equals("Bandung")){
-//            price = 165000;
-//            longTime = 9;
-//            nameBus = "Po Haryanto";
-//            linkBus = "https://drive.google.com/uc?id=1tP4doVWiiRR9faI9UO2t3NRq-TBrLl0n";
-//        }else if(from.equals("Bandung") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Bandung")){
-//            price = 275000;
-//            longTime = 9;
-//            nameBus = "Po Haryanto";
-//            linkBus = "https://drive.google.com/uc?id=1tP4doVWiiRR9faI9UO2t3NRq-TBrLl0n";
-//        }else if(from.equals("Bandung") && to.equals("Semarang") || from.equals("Semarang") && to.equals("Bandung")){
-//            price = 220000;
-//            longTime = 7;
-//            nameBus = "Sinar Jaya";
-//            linkBus = "https://drive.google.com/uc?id=1hEyLwnK9zmJ_vW6q5FuxQQ2KX9LqGy5b";
-//        }else if(from.equals("Jakarta") && to.equals("Semarang") || from.equals("Semarang") && to.equals("Jakarta")){
-//            price = 250000;
-//            longTime = 9;
-//            nameBus = "Sinar Jaya";
-//            linkBus = "https://drive.google.com/uc?id=1hEyLwnK9zmJ_vW6q5FuxQQ2KX9LqGy5b";
-//        }else if(from.equals("Semarang") && to.equals("Yogyakarta") || from.equals("Yogyakarta") && to.equals("Semarang")){
-//            price = 65000;
-//            longTime = 3;
-//            nameBus = "Sinar Jaya";
-//            linkBus = "https://drive.google.com/uc?id=1hEyLwnK9zmJ_vW6q5FuxQQ2KX9LqGy5b";
-//        }else if(from.equals("Semarang") && to.equals("Surabaya") || from.equals("Surabaya") && to.equals("Semarang")){
-//            price = 130000;
-//            longTime = 9;
-//            nameBus = "Widji Lestari";
-//            linkBus = "https://drive.google.com/uc?id=1HeQUyQurfqDv65aRu-9pllJioOcX6Zoh";
-//        }else if(from.equals("Solo") && to.equals("Semarang") || from.equals("Semarang") && to.equals("Solo")){
-//            price = 70000;
-//            longTime = 4;
-//            nameBus = "Sinar Jaya";
-//            linkBus = "https://drive.google.com/uc?id=1hEyLwnK9zmJ_vW6q5FuxQQ2KX9LqGy5b";
-//        }
-    }
-
-
-//    @SuppressLint("SimpleDateFormat")
-//    private void getTimeDate(String date, String time, int longTime){
-//        String pola = "MMM d, yyyy HH:mm";
-//        Date dateTime = null;
-//        String showTimeDate;
-//        SimpleDateFormat formatter= new SimpleDateFormat(pola);
-//        String check = date + " " + time;
-//        try {
-//            dateTime = formatter.parse(check);
-//        } catch (ParseException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        calendar.setTime(dateTime);
-//        calendar.add(Calendar.HOUR, 10);
-//
-//        showTimeDate = formatter.format(calendar.getTime());
-//
-//        if(showTimeDate.length() == longTime){
-//            totalDate = showTimeDate.substring(0, 11);
-//            totalTime = showTimeDate.substring(12, 17);
-//        }else{
-//            totalDate = showTimeDate.substring(0, 12);
-//            totalTime = showTimeDate.substring(13, 18);
-//        }
-//    }
 }

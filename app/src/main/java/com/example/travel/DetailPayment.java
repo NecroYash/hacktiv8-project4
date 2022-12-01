@@ -142,9 +142,6 @@ public class DetailPayment extends AppCompatActivity implements View.OnClickList
         Log.i("checkPrice", price.toString());
     }
 
-
-
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

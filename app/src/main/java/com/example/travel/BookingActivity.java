@@ -58,12 +58,8 @@ public class BookingActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_booking);
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        
-
         buttonBack = findViewById(R.id.buttonBackBooking);
-        
         buttonBack.setOnClickListener(this);
-
         loadingBookingList = findViewById(R.id.loadingBookingList);
 
     }

@@ -48,6 +48,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/rounded"/>
 
+
     <LinearLayout
         android:id="@+id/layoutInput"
         android:layout_width="match_parent"

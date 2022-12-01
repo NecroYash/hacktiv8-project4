@@ -1,10 +1,8 @@
 package com.example.travel.adapter;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travel.BookATrip;
 import com.example.travel.R;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.ViewHolder> {
@@ -106,7 +100,6 @@ public class AdapterListBooking extends RecyclerView.Adapter<AdapterListBooking.
             rowBooking.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, BookATrip.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("dateBooking", dateBooking.getText().toString());

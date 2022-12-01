@@ -91,38 +91,6 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-//    public void addBooking(){
-//        Map<String, Object> item = new HashMap<>();
-//        item.put("uid", uid);
-//        item.put("name", name);
-//        item.put("email", email);
-//        item.put("from", from);
-//        item.put("to", to);
-//        item.put("date", date);
-//        item.put("time", time);
-//        item.put("price", price);
-//        item.put("longTime", longTime);
-//        item.put("seats", seats);
-//        item.put("position", pos);
-//        item.put("totalTime", totalTime);
-//        item.put("totalDate", totalDate);
-//        item.put("nameBus", nameBus);
-//        item.put("linkBus", linkBus);
-//
-//        db.collection("booking")
-//                .add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        Toast.makeText(SeatsActivity.this, "Success", Toast.LENGTH_SHORT).show();
-//                    }
-//                }). addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(SeatsActivity.this, "Failure", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//    }
-
     private void saveDataOnrestart(){
         SharedPreferences sharedPreferences = getSharedPreferences("save", 0);
         SharedPreferences.Editor data = sharedPreferences.edit();
@@ -179,13 +147,10 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
-//                            checkSeats.clear();
-                            Log.i("show", checkSeats.toString());
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 if(document.getString("from").equals(from) && document.getString("to").equals(to) || document.getString("from").equals(to) && document.getString("to").equals(from)){
                                     if(document.getString("nameBus").equals(nameBus) && document.getString("time").equals(time) ){
                                         String seats = document.getString("position");
-                                        Log.i("iniSeats", seats);
                                         checkSeats.add(seats);
                                     }
                                 }
@@ -212,24 +177,7 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(SeatsActivity.this, "Please select your seats", Toast.LENGTH_SHORT).show();
                     return;
                 }
-//                addBooking();
-//                Intent intent = new Intent(SeatsActivity.this, BookATrip.class);
-//                intent.putExtra("dateBooking", date);
-//                intent.putExtra("fromBooking", from);
-//                intent.putExtra("toBooking", to);
-//                intent.putExtra("seatBooking", seats);
-//                intent.putExtra("timeBooking", time);
-//                intent.putExtra("totalTimeBooking", totalTime);
-//                intent.putExtra("totalDateBooking", totalDate);
-//                intent.putExtra("longTime", String.valueOf(longTime)+"H");
-//                intent.putExtra("priceBooking", getPrice(price));
-//                intent.putExtra("nameBus", nameBus);
-//                intent.putExtra("linkBus", linkBus);
-//                intent.putExtra("context", "notList");
-//                Log.i("totalTime", totalTime);
-//                startActivity(intent);
                 Intent intent = new Intent(SeatsActivity.this, DetailPayment.class);
-
                 intent.putExtra("uid", uid);
                 intent.putExtra("name", name);
                 intent.putExtra("email", email);
@@ -245,7 +193,6 @@ public class SeatsActivity extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("price", price);
                 intent.putExtra("nameBus", nameBus);
                 intent.putExtra("linkBus", linkBus);
-                Log.i("checkPrice", getPrice(price));
                 startActivity(intent);
                 MyRecyclerViewAdapter.dataSeat = null;
                 break;

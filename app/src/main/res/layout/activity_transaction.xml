@@ -175,17 +175,6 @@
             android:textAllCaps="false"
             android:onClick="mainmenu"/>
 
-        <Button
-            android:id="@+id/buttonToListTicket"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/outlined_button"
-            android:fontFamily="@font/nexa_bold"
-            android:text="Show Booking List"
-            android:layout_marginBottom="20dp"
-            android:textAllCaps="false"
-            android:onClick="mainmenu"/>
     </LinearLayout>
 
     </LinearLayout>

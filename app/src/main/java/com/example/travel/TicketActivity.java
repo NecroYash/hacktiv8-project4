@@ -19,6 +19,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
@@ -31,6 +32,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.File;
@@ -38,10 +45,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class TicketActivity extends AppCompatActivity{
+public class TicketActivity extends AppCompatActivity implements View.OnClickListener{
 
-    TextView fromTicket, toTicket, busTicket, timeTicket, dateTicket, longTicket, priceTicket;
-
+    TextView fromTicket, toTicket, busTicket, timeTicket, dateTicket, nameTicket;
+    FirebaseAuth auth;
+    ShapeableImageView imageTicket;
+    ImageView buttonBack;
     private PdfDocument document;
     private static final int CREATE_FILE = 1;
 
@@ -50,14 +59,23 @@ public class TicketActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
 
+        auth = FirebaseAuth.getInstance();
+        imageTicket = (ShapeableImageView) findViewById(R.id.userImageTicket);
+        buttonBack = (ImageView) findViewById(R.id.buttonBackDetail);
+        buttonBack.setOnClickListener(this);
+        nameTicket = (TextView) findViewById(R.id.userNameTicket);
         fromTicket = (TextView) findViewById(R.id.fromTicket);
         toTicket = (TextView) findViewById(R.id.toTicket);
         busTicket = (TextView) findViewById(R.id.busTicket);
         timeTicket = (TextView) findViewById(R.id.timeTicket);
         dateTicket = (TextView) findViewById(R.id.dateTicket);
-        longTicket = (TextView) findViewById(R.id.longTicket);
     }
-//
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     public void createPdfFromView(View view){
         final Dialog ticketDialog = new Dialog(this);
         ticketDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -68,20 +86,39 @@ public class TicketActivity extends AppCompatActivity{
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         ticketDialog.getWindow().setAttributes(lp);
+        ShapeableImageView userImage = ticketDialog.findViewById(R.id.imageT);
         ImageView downloadTicket = ticketDialog.findViewById(R.id.downloadTicket);
+        TextView nameT = ticketDialog.findViewById(R.id.nameT);
         TextView fromT = ticketDialog.findViewById(R.id.fromT);
         TextView toT = ticketDialog.findViewById(R.id.toT);
         TextView busT = ticketDialog.findViewById(R.id.bussT);
         TextView timeT = ticketDialog.findViewById(R.id.timeT);
         TextView dateT = ticketDialog.findViewById(R.id.dateT);
-        TextView longT = ticketDialog.findViewById(R.id.longT);
 
+        nameT.setText(auth.getCurrentUser().getDisplayName());
         fromT.setText(fromTicket.getText());
         toT.setText(toTicket.getText());
         busT.setText(busTicket.getText());
         timeT.setText(timeTicket.getText());
         dateT.setText(dateTicket.getText());
-        longT.setText(longTicket.getText());
+
+
+        Glide.with(this.getApplicationContext())
+                .load(auth.getCurrentUser().getPhotoUrl())
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        return false;
+                    }
+                })
+                .error(R.drawable.ic_launcher_background)
+                .into(userImage);
+
 
         ticketDialog.show();
         downloadTicket.setOnClickListener(new View.OnClickListener() {
@@ -156,23 +193,41 @@ public class TicketActivity extends AppCompatActivity{
         }
     }
 
-
-
-
-
     @Override
     protected void onStart() {
         super.onStart();
         getData();
     }
     private void getData(){
+        getImageUser();
+        nameTicket.setText(auth.getCurrentUser().getDisplayName());
         fromTicket.setText(getIntent().getStringExtra("fromBooking"));
         toTicket.setText(getIntent().getStringExtra("toBooking"));
         busTicket.setText(getIntent().getStringExtra("nameBus"));
         timeTicket.setText(getIntent().getStringExtra("timeBooking"));
         dateTicket.setText(getIntent().getStringExtra("dateBooking"));
-        longTicket.setText(getIntent().getStringExtra("longTime"));
     }
 
+    private void getImageUser(){
+        Glide.with(this.getApplicationContext())
+                .load(auth.getCurrentUser().getPhotoUrl())
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        return false;
+                    }
 
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        return false;
+                    }
+                })
+                .error(R.drawable.ic_launcher_background)
+                .into(imageTicket);
+    }
+
+    @Override
+    public void onClick(View view) {
+        onBackPressed();
+    }
 }

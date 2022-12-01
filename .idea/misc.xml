@@ -93,15 +93,20 @@
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/drawable/dot_line_black.xml" value="0.174" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/drawable/layout_login.xml" value="0.1" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/drawable/main_outlined_selected.xml" value="0.1" />
+        <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/drawable/white_bg_rounded_image.xml" value="0.1805" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_book_atrip.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_booking.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_bus.xml" value="0.264" />
-        <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_detail_payment.xml" value="0.2" />
+        <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_detail_payment.xml" value="0.264" />
+        <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_information.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_input_bus_data.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_seats.xml" value="0.23541666666666666" />
-        <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_ticket.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_ticket.xml" value="0.264" />
+        <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_total_spending.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_transaction.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/activity_user_profile.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/generate.xml" value="0.264" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/recylerview_item.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/row_booking.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/danuf/AndroidStudioProjects/hacktiv8-project4-11-28/app/src/main/res/layout/row_booking_bus.xml" value="0.264" />

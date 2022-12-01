@@ -20,7 +20,7 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <ImageView
-            android:id="@+id/buttonBackBooking"
+            android:id="@+id/buttonBackDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_arrow_back_ios_new_24"/>
@@ -47,6 +47,362 @@
             android:src="@drawable/ic_baseline_file_download_24" />
     </LinearLayout>
 
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:background="@drawable/white_bg_rounded"-->
+<!--        android:orientation="vertical"-->
+<!--        android:paddingVertical="20dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/appbar">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:paddingHorizontal="20dp">-->
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/userImageTicket"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:background="@drawable/ic_launcher_background"-->
+<!--                app:shapeAppearanceOverlay="@style/circleTicket" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/userNameTicket"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/nexa_bold"-->
+<!--                    android:text="Name user"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="15sp" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/nexa_regular"-->
+<!--                    android:text="Passenger"-->
+<!--                    android:textSize="15sp" />-->
+
+<!--            </LinearLayout>-->
+
+
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginVertical="15dp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:layout_width="7dp"-->
+<!--                android:layout_height="15dp"-->
+<!--                android:background="#F7F6F7"-->
+<!--                app:shapeAppearanceOverlay="@style/circleTicketSideLeft" />-->
+
+<!--            <View-->
+<!--                android:layout_width="1dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@drawable/horizontal_dotline" />-->
+
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:layout_width="7dp"-->
+<!--                android:layout_height="15dp"-->
+<!--                android:background="#F7F6F7"-->
+<!--                app:shapeAppearanceOverlay="@style/circleTicketSideRight" />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingHorizontal="20dp"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/fromTicket"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/nexa_bold"-->
+<!--                        android:text="From"-->
+<!--                        android:textColor="@color/black" />-->
+
+<!--                </LinearLayout>-->
+
+<!--                <com.google.android.material.imageview.ShapeableImageView-->
+<!--                    android:layout_width="7dp"-->
+<!--                    android:layout_height="7dp"-->
+<!--                    android:background="#D3D3D3"-->
+<!--                    android:layout_marginLeft="15dp"-->
+<!--                    app:shapeAppearanceOverlay="@style/circleTicketDoted"/>-->
+
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_height=".6dp"-->
+<!--                    android:background="#D3D3D3" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:layout_marginHorizontal="8dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="3dp"-->
+<!--                        android:layout_marginHorizontal="5dp"-->
+<!--                        android:src="@drawable/bus"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/longTicket"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="12sp"-->
+<!--                        android:textColor="#D3D3D3"-->
+<!--                        android:fontFamily="@font/nexa_bold"-->
+<!--                        android:text="Total"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_height=".6dp"-->
+<!--                    android:background="#D3D3D3" />-->
+
+<!--                <com.google.android.material.imageview.ShapeableImageView-->
+<!--                    android:layout_width="7dp"-->
+<!--                    android:layout_height="7dp"-->
+<!--                    android:background="#D3D3D3"-->
+<!--                    android:layout_marginRight="15dp"-->
+<!--                    app:shapeAppearanceOverlay="@style/circleTicketDoted"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/toTicket"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="To"-->
+<!--                        android:fontFamily="@font/nexa_bold"-->
+<!--                        android:textColor="@color/black" />-->
+
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingHorizontal="20dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_weight=".3"-->
+<!--                    android:layout_height="wrap_content"-->
+
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Date"-->
+<!--                        android:layout_marginBottom="3dp"-->
+<!--                        android:fontFamily="@font/nexa_regular"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/dateTicket"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="22 Nov, 2022"-->
+<!--                        android:fontFamily="@font/nexa_bold"-->
+<!--                        android:textColor="@color/black"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Class"-->
+<!--                        android:layout_marginBottom="3dp"-->
+<!--                        android:fontFamily="@font/nexa_regular"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Economy"-->
+<!--                        android:fontFamily="@font/nexa_bold"-->
+<!--                        android:textColor="@color/black"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Passenger"-->
+<!--                        android:textAlignment="textEnd"-->
+<!--                        android:layout_marginBottom="3dp"-->
+<!--                        android:fontFamily="@font/nexa_regular"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="1 Adult"-->
+<!--                        android:layout_marginLeft="8dp"-->
+<!--                        android:fontFamily="@font/nexa_bold"-->
+<!--                        android:textColor="@color/black"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingHorizontal="20dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Seat"-->
+<!--                        android:layout_marginBottom="3dp"-->
+<!--                        android:fontFamily="@font/nexa_regular"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/seatsTicket"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="29C"-->
+<!--                        android:fontFamily="@font/nexa_bold"-->
+<!--                        android:textColor="@color/black"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_weight="1"-->
+
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Buss name"-->
+<!--                        android:layout_marginBottom="3dp"-->
+<!--                        android:fontFamily="@font/nexa_regular"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/busTicket"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Sugeng Rahayu"-->
+<!--                        android:fontFamily="@font/nexa_bold"-->
+<!--                        android:textColor="@color/black"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="start"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Time"-->
+<!--                        android:layout_marginLeft="8dp"-->
+<!--                        android:layout_marginBottom="3dp"-->
+<!--                        android:fontFamily="@font/nexa_regular"/>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/timeTicket"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="19:30"-->
+<!--                        android:layout_marginLeft="8dp"-->
+<!--                        android:fontFamily="@font/nexa_bold"-->
+<!--                        android:textColor="@color/black"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -70,7 +426,7 @@
                 android:id="@+id/userImageTicket"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@color/black"
+                android:background="@drawable/ic_launcher_background"
                 app:shapeAppearanceOverlay="@style/circleTicket" />
 
             <LinearLayout
@@ -108,131 +464,77 @@
             android:layout_marginVertical="15dp"
             android:orientation="horizontal">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="7dp"
-                android:layout_height="15dp"
-                android:background="#F7F6F7"
-                app:shapeAppearanceOverlay="@style/circleTicketSideLeft" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:background="@drawable/horizontal_dotline" />
-
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="7dp"
-                android:layout_height="15dp"
-                android:background="#F7F6F7"
-                app:shapeAppearanceOverlay="@style/circleTicketSideRight" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="20dp"
-            android:orientation="vertical">
-
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:paddingHorizontal="20dp"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/fromTicket"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nexa_bold"
-                        android:text="From"
-                        android:textColor="@color/black" />
+                        android:orientation="vertical">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/fromTicket"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nexa_bold"
+                            android:text="Yogyakarta"
+                            android:textColor="@color/black" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="7dp"
-                    android:layout_height="7dp"
-                    android:background="#D3D3D3"
-                    android:layout_marginLeft="15dp"
-                    app:shapeAppearanceOverlay="@style/circleTicketDoted"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height=".6dp"
-                    android:background="#D3D3D3" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:layout_marginHorizontal="8dp"
-                    android:orientation="vertical">
+                    </LinearLayout>
 
                     <ImageView
+                        android:layout_marginHorizontal="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="3dp"
-                        android:layout_marginHorizontal="5dp"
-                        android:src="@drawable/bus"/>
+                        android:src="@drawable/ic_baseline_arrow_right_alt_24"/>
 
-                    <TextView
-                        android:id="@+id/longTicket"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#D3D3D3"
-                        android:fontFamily="@font/nexa_bold"
-                        android:text="Total"/>
+                        android:gravity="center"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:id="@+id/toTicket"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bandung"
+                            android:fontFamily="@font/nexa_bold"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:layout_height=".6dp"
-                    android:background="#D3D3D3" />
+                    android:background="@drawable/horizontal_dotline" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="7dp"
-                    android:layout_height="7dp"
-                    android:background="#D3D3D3"
-                    android:layout_marginRight="15dp"
-                    app:shapeAppearanceOverlay="@style/circleTicketDoted"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/toTicket"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="To"
-                        android:fontFamily="@font/nexa_bold"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
             </LinearLayout>
 
+
+
         </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -241,10 +543,8 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="100dp"
-                    android:layout_weight=".3"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-
                     android:orientation="vertical">
 
                     <TextView
@@ -286,28 +586,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Passenger"
-                        android:textAlignment="textEnd"
-                        android:layout_marginBottom="3dp"
-                        android:fontFamily="@font/nexa_regular"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1 Adult"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/nexa_bold"
-                        android:textColor="@color/black"/>
-
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -326,9 +605,8 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="100dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
@@ -339,7 +617,7 @@
                         android:fontFamily="@font/nexa_regular"/>
 
                     <TextView
-                        android:id="@+id/seatsTicket"
+                        android:id="@+id/seatT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="29C"
@@ -349,11 +627,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
-
                     android:orientation="vertical">
 
                     <TextView
@@ -373,17 +649,25 @@
 
                 </LinearLayout>
 
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
                 <LinearLayout
-                    android:layout_width="80dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:gravity="start"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Time"
-                        android:layout_marginLeft="8dp"
                         android:layout_marginBottom="3dp"
                         android:fontFamily="@font/nexa_regular"/>
 
@@ -392,7 +676,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="19:30"
-                        android:layout_marginLeft="8dp"
+                        android:fontFamily="@font/nexa_bold"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Passenger"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="@font/nexa_regular"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 Adult"
                         android:fontFamily="@font/nexa_bold"
                         android:textColor="@color/black"/>
 
