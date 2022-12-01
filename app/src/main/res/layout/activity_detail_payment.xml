@@ -73,7 +73,7 @@
                 android:textColor="@color/main_color"/>
 
             <TextView
-                android:id="@+id/getUsernameBooking"
+                android:id="@+id/detailPaymentName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="user name"
@@ -91,7 +91,7 @@
                 android:textColor="@color/main_color"/>
 
             <TextView
-                android:id="@+id/getUserEmailBooking"
+                android:id="@+id/detailPaymentBusName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bus Name"
@@ -125,7 +125,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/getBookingSeats"
+                        android:id="@+id/detailPaymentBusSeats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nexa_regular"
@@ -192,7 +192,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/getFromBooking"
+                            android:id="@+id/detailPaymentFrom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Dari"
@@ -204,7 +204,7 @@
                             />
 
                         <TextView
-                            android:id="@+id/getTimeBooking"
+                            android:id="@+id/detailPaymentTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nexa_regular"
@@ -212,7 +212,7 @@
                             android:text="06:50 AM"/>
 
                         <TextView
-                            android:id="@+id/getDateBooking"
+                            android:id="@+id/detailPaymentDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nexa_regular"
@@ -241,7 +241,7 @@
                             android:src="@drawable/bus"/>
 
                         <TextView
-                            android:id="@+id/getLongTime"
+                            android:id="@+id/detailPaymentLong"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
@@ -266,7 +266,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/getToBooking"
+                            android:id="@+id/detailPaymentTo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="tujuan"
@@ -278,7 +278,7 @@
                             />
 
                         <TextView
-                            android:id="@+id/getTotalTime"
+                            android:id="@+id/detailPaymentTotalTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nexa_regular"
@@ -286,7 +286,7 @@
                             android:text="06:50 AM"/>
 
                         <TextView
-                            android:id="@+id/getTotalDate"
+                            android:id="@+id/detailPaymentTotalDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nexa_regular"
@@ -304,7 +304,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/getPriceBooking"
+                        android:id="@+id/detailPaymentPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp150.000,00"

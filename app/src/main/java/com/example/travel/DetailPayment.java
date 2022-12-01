@@ -26,6 +26,8 @@ public class DetailPayment extends AppCompatActivity implements View.OnClickList
     private String payMethod,virtualNum;
     private ImageView buttonBack;
 
+    TextView nameUser, busName, seatsU, fromU, toU, timeU, dateU, totalDateU, totalTimeU, priceU, longTimeU;
+
     String name, email, from, to, date, time, seats, totalTime, totalDate, uid, nameBus, linkBus;
     int longTime;
     Double price;
@@ -45,6 +47,18 @@ public class DetailPayment extends AppCompatActivity implements View.OnClickList
         tindo = (TextView) findViewById(R.id.indomaret_txt);
         buttonBack = (ImageView) findViewById(R.id.buttonBackDetailPayment);
         buttonBack.setOnClickListener(this);
+
+        nameUser = (TextView) findViewById(R.id.detailPaymentName);
+        busName = (TextView) findViewById(R.id.detailPaymentBusName);
+        seatsU = (TextView) findViewById(R.id.detailPaymentBusSeats);
+        timeU = (TextView) findViewById(R.id.detailPaymentTime);
+        fromU = (TextView) findViewById(R.id.detailPaymentFrom);
+        toU = (TextView) findViewById(R.id.detailPaymentTo);
+        dateU = (TextView) findViewById(R.id.detailPaymentDate);
+        totalTimeU = (TextView) findViewById(R.id.detailPaymentTotalTime);
+        totalDateU = (TextView) findViewById(R.id.detailPaymentTotalDate);
+        priceU = (TextView) findViewById(R.id.detailPaymentPrice);
+        longTimeU = (TextView) findViewById(R.id.detailPaymentLong);
     }
 
     public void pay(View view) {
@@ -113,12 +127,10 @@ public class DetailPayment extends AppCompatActivity implements View.OnClickList
             .add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
-                    Toast.makeText(DetailPayment.this, "Success", Toast.LENGTH_SHORT).show();
                 }
             }). addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(DetailPayment.this, "Failure", Toast.LENGTH_SHORT).show();
                 }
             });
     }
@@ -139,7 +151,19 @@ public class DetailPayment extends AppCompatActivity implements View.OnClickList
         totalDate = getIntent().getStringExtra("totalDate");
         nameBus = getIntent().getStringExtra("nameBus");
         linkBus = getIntent().getStringExtra("linkBus");
-        Log.i("checkPrice", price.toString());
+
+
+        nameUser.setText(name);
+        busName.setText(nameBus);
+        seatsU.setText(seats);
+        fromU.setText(from);
+        toU.setText(to);
+        timeU.setText(time);
+        dateU.setText(date);
+        totalDateU.setText(totalDate);
+        totalTimeU.setText(totalTime);
+        priceU.setText(String.valueOf(getPrice(price)));
+        longTimeU.setText(longTime+"H");
     }
 
     @Override
@@ -160,5 +184,11 @@ public class DetailPayment extends AppCompatActivity implements View.OnClickList
     protected void onStart() {
         super.onStart();
         getData();
+    }
+
+    private String getPrice(double price){
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        return formatRupiah.format(price);
     }
 }
